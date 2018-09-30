@@ -1,3 +1,18 @@
+x64/
+Debug/
+.vs/
+*.vcxproj
+*.user
+*.filters
+
+*.log
+*.idb
+*.pdb
+*.tlog
+*.lastbuildstate
+*.sln
+
+### C++ ###
 # Prerequisites
 *.d
 
