@@ -1,8 +1,10 @@
 #pragma once
-
+#include "modeL.h"
+#include <thread>
+using std::function;
 
 //array of whatever type
-template<typename T> class Li_Arr {
+template<typename T> class Li_Arr :public Li_Cl<T> {
 public:
 		//designer1
 		Li_Arr() { arr = new T[N];}
@@ -19,14 +21,14 @@ public:
 		//size of the array
 		int size() { return kol;}
 
-		//return k(th) item
-		T return_k_el(int k) { 
+		//find by index
+		T find_by_index(int k) {
 			if(k < kol && k>=0)return arr[k];
 			else return (T)nullptr;
 		}
 
 		//add an item to the end of the array
-		bool add_L(T d) {
+		bool add_end(T d) {
 			if (kol == N-1) return false;
 			arr[kol] = d;
 			kol++;
@@ -34,7 +36,7 @@ public:
 		}
 
 		//delete all elements of the array
-		void del_all_el() {
+		void dell_all() {
 			while (kol > 0) {
 				kol--;
 				arr[kol] = (T)nullptr;
@@ -42,7 +44,7 @@ public:
 		}
 
 		//delete k(th) element of the array
-		void del_k_L(int k) {
+		void del_k(int k) {
 			if (k >= kol) return;
 			for (int j = k; j < kol; j++) {
 				arr[j] = arr[j + 1];
@@ -50,18 +52,29 @@ public:
 			kol--;
 		}
 
-		//find the index of the element with the value of d
-		int find_first_el(T d) {
-			for (int i = 0; i < kol; i++) {
-				if (d == arr[i])return i;
+
+		//find by value
+		int find_by_value(T d){
+			int k = 0;
+			while (k < kol)
+			{
+				if (d == data[k])return k;
 			}
-			std::cout << "not found" << std::endl;
+			std::cout << "not find" << std::endl;
+			return -1;
+		}
+
+		//find by if
+		int find_by_if(function<bool(T)> f){
+			for (int i = 0; i < kol; i++)
+			{
+				if (f(data[i])) return i;
+			}
 			return -1;
 		}
 
 		//print the entire array
-		void printArr()
-		{
+		void printArr(){
 			for (int i = 0; i < kol; i++)
 				std::cout << arr[i] << "";
 			std::cout << std::endl;
