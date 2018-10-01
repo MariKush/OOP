@@ -1,0 +1,18 @@
+#pragma once
+
+#include<thread>
+using std::function;
+
+enum MODE { Arr, List, Vec};
+
+template<typename T>class Li_Cl
+{
+public:
+	virtual bool add_end(T d) = 0;
+	virtual int size() = 0;
+	virtual void dell_all() = 0;
+	virtual	void del_k(int k) = 0;
+	//virtual	T find_by_index(T d) = 0;
+	virtual	int find_by_value(T d) = 0;
+	virtual int find_by_if(function<bool(T)> f) = 0;
+};
