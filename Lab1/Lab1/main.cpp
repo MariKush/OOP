@@ -1,35 +1,35 @@
 #include <iostream>
-#include "Li_Cl_Arr.h"
+#include "Array.h"
+#include "List.h"
 
 using std::cout;
 using std::endl;
 
 int main()
 {
-	Li_Arr <int> L;
+	List<int> L;
 
-	L.printArr();
 
-	L.add_L(7);
-	L.add_L(3);
-	L.add_L(8);
-	L.add_L(0);
-	L.add_L(1);
-	L.add_L(4);
-	L.add_L(1);
-	L.add_L(8);
+	L.add_end(7);
+	L.add_end(3);
+	L.add_end(8);
+	L.add_end(0);
+	L.add_end(1);
+	L.add_end(4);
+	L.add_end(1);
+	L.add_end(8);
 
-	L.printArr();
+	L.print();
 
-	int a = L.return_k_el(4);
+	int a = L.find_by_index(4);
 
 	cout << "a = " << a << endl;
 
-	L.del_k_L(4);
+	L.del_k(4);
 
-	L.printArr();
+	L.print();
 
-	int ind = L.find_first_el(0);
+	int ind = L.find_by_value(0);
 
 	cout << "ind = " << ind << endl;
 
@@ -37,11 +37,11 @@ int main()
 
 	cout << "kol = " << kol << endl;
 
-	L.printArr();
+	L.print();
 
-	L.del_all_el();
+	L.dell_all();
 
-	L.printArr();
+	L.print();
 
 	system("pause");
 

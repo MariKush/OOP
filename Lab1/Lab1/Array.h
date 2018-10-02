@@ -1,22 +1,23 @@
 #pragma once
-#include "modeL.h"
+//#include "vList.h"
 #include <thread>
 using std::function;
 
 //array of whatever type
-template<typename T> class Li_Arr :public Li_Cl<T> {
+template<typename T> class Array //:public vList<T> 
+{
 public:
 		//designer1
-		Li_Arr() { arr = new T[N];}
+		Array() { arr = new T[N];}
 
 		//designer2
-		Li_Arr(int n) {
+		Array(int n) {
 			N = n;
 			arr = new T[N];
 		}
 
 		//destructor
-		~Li_Arr() { delete [] arr; }
+		~Array() { delete [] arr; }
 
 		//size of the array
 		int size() { return kol;}
@@ -58,7 +59,7 @@ public:
 			int k = 0;
 			while (k < kol)
 			{
-				if (d == data[k])return k;
+				if (d == arr[k])return k;
 			}
 			std::cout << "not find" << std::endl;
 			return -1;
@@ -68,13 +69,13 @@ public:
 		int find_by_if(function<bool(T)> f){
 			for (int i = 0; i < kol; i++)
 			{
-				if (f(data[i])) return i;
+				if (f(arr[i])) return i;
 			}
 			return -1;
 		}
 
 		//print the entire array
-		void printArr(){
+		void print(){
 			for (int i = 0; i < kol; i++)
 				std::cout << arr[i] << "";
 			std::cout << std::endl;
