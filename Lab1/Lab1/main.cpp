@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Array.h"
 #include "List.h"
+#include "Vector.h"
 
 using std::cout;
 using std::endl;
@@ -14,7 +15,7 @@ template <typename T> bool b(T d)
 
 int main()
 {
-	List<int> L;
+	Vector<int> L;
 
 
 	L.add_end(7);
