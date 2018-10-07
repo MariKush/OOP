@@ -1,7 +1,5 @@
 #pragma once
 #include "vList.h"
-#include <thread>
-using std::function;
 
 
 //list of whatever type
@@ -139,7 +137,7 @@ public:
 	}
 
 	//find by if
-	int find_by_if(function<bool(T)> f) {
+	int find_by_if(bool(*f)(T)) {
 		Node<T> *tmp = beg;
 
 		for (int i = 0; i < kol; i++)

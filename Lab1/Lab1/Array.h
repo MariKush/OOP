@@ -1,7 +1,6 @@
 #pragma once
 //#include "vList.h"
-#include <thread>
-using std::function;
+
 
 //array of whatever type
 template<typename T> class Array //:public vList<T> 
@@ -73,7 +72,8 @@ public:
 		}
 
 		//find by if
-		int find_by_if(function<bool(T)> f){
+		//int find_by_if(function<bool(T)> f)
+		int find_by_if(bool(*f)(T)){
 			for (int i = 0; i < kol; i++)
 			{
 				if (f(arr[i])) return i;

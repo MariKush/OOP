@@ -1,6 +1,5 @@
 #pragma once
-#include <thread>
-using std::function;
+
 
 template<typename T>class vList
 {
@@ -11,5 +10,6 @@ public:
 	virtual	void del_k(int k) = 0;
 	virtual	T find_by_index(T d) = 0;
 	virtual	int find_by_value(T d) = 0;
-	virtual int find_by_if(function<bool(T)> f) = 0;
+	virtual int find_by_if(bool(*f)(T)) = 0;
+
 };
