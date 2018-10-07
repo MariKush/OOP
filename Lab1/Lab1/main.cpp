@@ -32,15 +32,19 @@ int main()
 
 	cout << "a = " << a << endl;
 
-	L.del_k(4);
+	int kol = L.size();
+
+	cout << "kol = " << kol << endl;
+
+	L.del_k(7);
 
 	L.print();
 
-	int ind_by_value = L.find_by_value(0);
+	int ind_by_value = L.find_by_value(9);
 
 	cout << "ind_by_value = " << ind_by_value << endl;
 
-	int kol = L.size();
+	kol = L.size();
 
 	cout << "kol = " << kol << endl;
 

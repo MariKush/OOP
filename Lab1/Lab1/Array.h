@@ -72,7 +72,6 @@ public:
 		}
 
 		//find by if
-		//int find_by_if(function<bool(T)> f)
 		int find_by_if(bool(*f)(T)){
 			for (int i = 0; i < kol; i++)
 			{

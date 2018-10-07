@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "vList.h"
 
 
@@ -23,8 +24,8 @@ public:
 	//designer
 	List() { 
 		kol = 0; 
-		beg = nullptr;
-		end = nullptr; 
+		beg = NULL;
+		end = NULL; 
 	}
 
 
@@ -33,7 +34,7 @@ public:
 	~List() {
 		if (end)
 		{
-			end->next = nullptr;
+			end->next = NULL;
 			while (beg->next)
 			{
 				end = beg;
@@ -76,7 +77,7 @@ public:
 
 	//delete all elements of the list
 	void dell_all() {
-		end->next = nullptr;
+		end->next = NULL;
 		while (beg->next)
 		{
 			end = beg;
@@ -85,7 +86,7 @@ public:
 		}
 		kol = 0;
 		delete beg;
-		beg = end = nullptr;
+		beg = end = NULL;
 	}
 
 	//delete k(th) element of the list
@@ -100,14 +101,19 @@ public:
 			delete tmp;
 			return;
 		}
-		for (int i = 1; i < k; i++)
+		else
 		{
-			tmp = tmp->next;
+			for (int i = 1; i < k; i++) {
+				tmp = tmp->next;
+			}
 			Node<T> *tmp2 = tmp->next;
-			
-			tmp->next = tmp->next->next;
+			if(k == kol) tmp->next = NULL;
+			else tmp->next = tmp->next->next;
 			delete tmp2;
+	
 		}
+		
+	
 	}
 
 	//find by index
