@@ -6,12 +6,22 @@ using std::function;
 //array of whatever type
 template<typename T> class Array //:public vList<T> 
 {
+private:
+	   	T *arr = nullptr;
+		int kol; //the current number of elements in the array
+		int N; //maximum number of elements in the array
+
 public:
 		//designer1
-		Array() { arr = new T[N];}
+		Array() {
+			N = 1000;
+			kol = 0; 
+			arr = new T[N]; 
+		}
 
 		//designer2
 		Array(int n) {
+			kol = 0;
 			N = n;
 			arr = new T[N];
 		}
@@ -56,11 +66,8 @@ public:
 
 		//find by value
 		int find_by_value(T d){
-			int k = 0;
-			while (k < kol)
-			{
-				if (d == arr[k])return k;
-			}
+			for(int i = 0; i< kol;i ++)
+				if (arr[i] == d)return i;
 			std::cout << "not find" << std::endl;
 			return -1;
 		}
@@ -81,9 +88,4 @@ public:
 			std::cout << std::endl;
 		}
 
-
-private:
-		T *arr = nullptr;
-		int kol = 0; //the current number of elements in the array
-		int N = 10000; //maximum number of elements in the array
 };

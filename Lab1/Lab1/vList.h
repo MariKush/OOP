@@ -1,5 +1,5 @@
 #pragma once
-
+#include <thread>
 using std::function;
 
 template<typename T>class vList

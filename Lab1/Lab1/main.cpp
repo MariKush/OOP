@@ -7,7 +7,7 @@ using std::endl;
 
 int main()
 {
-	List<int> L;
+	Array<int> L;
 
 
 	L.add_end(7);

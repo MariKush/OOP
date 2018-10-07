@@ -1,5 +1,6 @@
 #pragma once
-//#include "vList.h"
+#include "vList.h"
+#include <thread>
 using std::function;
 
 
@@ -9,14 +10,14 @@ class List //:public vList<T>
 {
 	template<typename T> class Node  {
 	public:
-		T datà;
+		T v;
 		Node *next;
 	};
 
 	int kol;
 
-	Node<T> *head;
-	Node<T> *tail;
+	Node<T> *beg;
+	Node<T> *end;
 
 
 public:
@@ -24,21 +25,26 @@ public:
 	//designer
 	List() { 
 		kol = 0; 
-		head = nullptr;
-		tail = nullptr; 
+		beg = nullptr;
+		end = nullptr; 
 	}
+
+
 
 	//destructor
 	~List() {
-		tail->next = nullptr;
-		while (head->next)
+		if (end)
 		{
-			tail = head;
-			head = head->next;
-			delete tail;
+			end->next = nullptr;
+			while (beg->next)
+			{
+				end = beg;
+				beg = beg->next;
+				delete end;
+			}
+			delete end;
+			delete beg;
 		}
-		delete tail;
-		delete head;
 	}
 
 	//size of the list
@@ -50,23 +56,21 @@ public:
 	//add an item to the end of the list
 	bool add_end(T d) {
 		kol++;
-		if (!head)
+		if (!beg)
 		{
-			head = new Node<T>;
+			beg = new Node<T>;
+			end = beg;
+			end->v = d;
+			end->next = end;
 			
-			tail = head;
-			tail->data = d;
-			tail->next = tail;
 			return true;
 		}
 		else
 		{
-			Node<T> *tmp = new Node<T>;
-			
-			tmp->next = head;
-			tmp->data = d;
-			head = tmp;
-			tail->next = head;
+			end->next = new Node<T>;
+			end = end->next;
+			end->v = d;
+			end->next = beg;
 			return true;
 		}
 
@@ -74,24 +78,27 @@ public:
 
 	//delete all elements of the list
 	void dell_all() {
-		tail->next = nullptr;
-		while (head->next)
+		end->next = nullptr;
+		while (beg->next)
 		{
-			tail = head;
-			head = head->next;
-			delete tail;
+			end = beg;
+			beg = beg->next;
+			delete end;
 		}
+		kol = 0;
+		delete beg;
+		beg = end = nullptr;
 	}
 
 	//delete k(th) element of the list
 	void del_k(int k) {
-		Node<T> *tmp = head;
+		Node<T> *tmp = beg;
 		
 		if (k >= kol || k < 0) return;
 		kol--;
 		if (k == 0)
 		{
-			head = head->next;
+			beg = beg->next;
 			delete tmp;
 			return;
 		}
@@ -107,24 +114,23 @@ public:
 
 	//find by index
 	T find_by_index(int k){
-	Node<T> *tmp = head;
+	Node<T> *tmp = beg;
 
 	for (int i = 0; i < k; i++)
 	{
 		tmp = tmp->next;
 	}
-	std::cout << tmp->datà << " ";
-	std::cout << std::endl;
-}
+	return tmp->v;
+	}
 
 	//find by value
 	int find_by_value(T d) {
 		int j = 0;
-		Node<T> *tmp = head;
+		Node<T> *tmp = beg;
 
 		while (tmp)
 		{
-			if (tmp->datà == d) return j;
+			if (tmp->v == d) return j;
 			tmp = tmp->next;
 			if (j > kol) return -1;
 			j++;
@@ -134,12 +140,12 @@ public:
 
 	//find by if
 	int find_by_if(function<bool(T)> f) {
-		Node<T> *tmp = head;
+		Node<T> *tmp = beg;
 
 		for (int i = 0; i < kol; i++)
 		{
 
-			if (f(tmp->data)) return i;
+			if (f(tmp->v)) return i;
 			tmp = tmp->next;
 		}
 		return -1;
@@ -147,11 +153,11 @@ public:
 
 	//print the entire array
 	void print() {
-		Node<T> *tmp = head;
+		Node<T> *tmp = beg;
 	
 		for (int i = 0; i < kol; i++)
 		{
-			std::cout << tmp->datà << "";
+			std::cout << tmp->v << "";
 			tmp = tmp->next;
 		}
 		std::cout << std::endl;
