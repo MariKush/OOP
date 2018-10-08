@@ -1,7 +1,12 @@
 #include <iostream>
+
 #include "Array.h"
 #include "List.h"
 #include "Vector.h"
+
+#include "vList.h"
+
+#include "iList.h"
 
 using std::cout;
 using std::endl;
@@ -13,10 +18,11 @@ template <typename T> bool b(T d)
 	return false;
 }
 
-int main()
-{
-	Vector<int> L;
 
+
+void test()
+{
+	iList<int> L(arr);
 
 	L.add_end(7);
 	L.add_end(3);
@@ -50,15 +56,22 @@ int main()
 	cout << "kol = " << kol << endl;
 
 	int ind_by_if = L.find_by_if(b);
-	
+
 	cout << "ind_by_if = " << ind_by_if << endl;
 
 
 	L.print();
 
-	L.dell_all();
+	L.del_all();
 
 	L.print();
+
+	
+}
+
+int main()
+{
+	test();
 
 	system("pause");
 

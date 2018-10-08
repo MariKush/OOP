@@ -1,11 +1,12 @@
 #pragma once
+
 #include <vector>
-//#include "vList.h"
+#include "vList.h"
 
 using std::vector;
 
 //vector of whatever type
-template<typename T> class Vector //:public vList<T> 
+template<typename T> class Vector :public vList<T> 
 {
 private:
 	
@@ -28,7 +29,7 @@ public:
 	}
 
 	//delete all elements of the vector
-	void dell_all() {
+	void del_all() {
 		vec.clear();
 	}
 
@@ -61,7 +62,7 @@ public:
 	//print the entire array
 	void print() {
 		for (int i = 0; i < (int)vec.size(); i++)
-			std::cout << vec[i] << "";
+			std::cout << vec[i] << " ";
 		std::cout << std::endl;
 	}
 

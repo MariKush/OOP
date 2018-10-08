@@ -1,11 +1,10 @@
 #pragma once
-#include <iostream>
-#include "vList.h"
 
+#include "vList.h"
 
 //list of whatever type
 template<typename T> 
-class List //:public vList<T> 
+class List :public vList<T> 
 {
 	template<typename T> class Node  {
 	public:
@@ -76,7 +75,7 @@ public:
 	}
 
 	//delete all elements of the list
-	void dell_all() {
+	void del_all() {
 		end->next = NULL;
 		while (beg->next)
 		{
@@ -161,7 +160,7 @@ public:
 	
 		for (int i = 0; i < kol; i++)
 		{
-			std::cout << tmp->v << "";
+			std::cout << tmp->v << " ";
 			tmp = tmp->next;
 		}
 		std::cout << std::endl;

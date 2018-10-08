@@ -1,28 +1,22 @@
 #pragma once
-//#include "vList.h"
+
+#include "vList.h"
 
 
 //array of whatever type
-template<typename T> class Array //:public vList<T> 
+template<typename T> class Array :public vList<T> 
 {
 private:
 	   	T *arr = nullptr;
 		int kol; //the current number of elements in the array
-		int N; //maximum number of elements in the array
+		int N = 1000; //maximum number of elements in the array
 
 public:
-		//designer1
+		//designer
 		Array() {
-			N = 1000;
 			kol = 0; 
 			arr = new T[N]; 
-		}
-
-		//designer2
-		Array(int n) {
-			kol = 0;
-			N = n;
-			arr = new T[N];
+		
 		}
 
 		//destructor
@@ -46,7 +40,7 @@ public:
 		}
 
 		//delete all elements of the array
-		void dell_all() {
+		void del_all() {
 			while (kol > 0) {
 				kol--;
 				arr[kol] = (T)nullptr;
@@ -83,7 +77,7 @@ public:
 		//print the entire array
 		void print(){
 			for (int i = 0; i < kol; i++)
-				std::cout << arr[i] << "";
+				std::cout << arr[i] << " ";
 			std::cout << std::endl;
 		}
 
