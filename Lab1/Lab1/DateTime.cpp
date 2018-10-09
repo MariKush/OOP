@@ -1,0 +1,153 @@
+#include "DateTime.h"
+#include <iostream>
+
+bool intercalary(int y){	
+	if (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0)) return true;
+	else return false;
+}
+
+int day_in_month(int year, int month){
+	if (month == 2) return 28 + intercalary(year);
+	if (month == 4 || month == 6 || month == 9 || month == 11) return 30;
+	return 31;
+}
+
+bool DateTime::is_correct(){
+	if (month > 12 || month < 0 || hour > 23 || hour < 0 || minute > 59 || minute < 0 || second > 59 || second < 0) return false;
+	if (day < 0 || day > day_in_month(year, month)) return false;
+	return true;
+}
+
+void DateTime::make_correct(){
+
+	while (month < 1){
+		month += 12;
+		year--;
+	}
+	while (month > 12){
+		month -= 12;
+		year++;
+	}
+
+	while (day < 1){
+		month--;
+		if (month < 1){
+			month += 12;
+			year--;
+		}
+		day += day_in_month(year, month);
+	}
+	while (day > day_in_month(year, month)){
+		day -= day_in_month(year, month);
+		month++;
+		if (month > 12){
+			month -= 12;
+			year++;
+		}
+	}
+}
+
+int DateTime::shift_weekday()
+{
+	if (!this->is_correct()) return -1;
+	int shift = 1;
+	for (int i = 1; i < year; i++)
+		if (intercalary(i))shift += 2;//in intercalary years weekday shifts on 2 days
+		else shift++;
+
+	for (int i = 1; i < month; i++)
+		shift += day_in_month(year, i);
+
+	shift = shift + day - 1;
+
+	return shift;
+}
+
+
+void DateTime::cout_weekday()
+{
+	int shift = shift_weekday();
+	if (shift < 0)
+	{
+		std::cout << "The date is not correct for now" << std::endl;
+		return;
+	}
+
+	shift = shift % 7;
+	switch (shift)
+	{
+	case 1: std::cout << "Monday"; break;
+	case 2: std::cout << "Tuesday"; break;
+	case 3: std::cout << "Wednesday"; break;
+	case 4: std::cout << "Thursday"; break;
+	case 5: std::cout << "Friday"; break;
+	case 6: std::cout << "Saturday"; break;
+	case 0: std::cout << "Sunday"; break;
+	default:
+		std::cout << "The date is not correct";
+		break;
+	}
+	std::cout << std::endl;
+}
+
+void swap_DateTime(DateTime &D1, DateTime &D2)
+{
+	DateTime D = D1;
+	D1 = D2;
+	D2 = D;
+}
+
+DateTime difference(DateTime D1, DateTime D2)
+{
+	if (D2.get_year() < D1.get_year()) swap_DateTime(D1, D2);
+	else if (D2.get_year() == D1.get_year())
+	{
+		if (D2.get_month() < D1.get_month()) swap_DateTime(D1, D2);
+		else if (D2.get_month() == D1.get_month())
+		{
+			if (D2.get_day() < D1.get_day()) swap_DateTime(D1, D2);
+			else if (D2.get_day() == D1.get_day())
+			{
+				if (D2.get_minute() < D1.get_minute()) swap_DateTime(D1, D2);
+				else if (D2.get_minute() == D1.get_minute())
+				{
+					if (D2.get_second() < D1.get_second()) swap_DateTime(D1, D2);
+				}
+			}
+		}
+	}
+
+	DateTime D(D2.get_year() - D1.get_year(), D2.get_month() - D1.get_month(), D2.get_day() - D1.get_day(), D2.get_hour() - D1.get_hour(), D2.get_minute() - D1.get_minute(), D2.get_second() - D1.get_second());
+	return D;
+}
+
+
+void DateTime:: add_difference(DateTime D1)
+{
+	year += D1.get_year();
+	month += D1.get_month();
+	day += D1.get_day();
+	hour += D1.get_hour();
+	minute += D1.get_minute();
+	second += D1.get_second();
+
+	make_correct();
+}
+
+void DateTime::subtraction_difference(DateTime D1)
+{
+	year -= D1.get_year();
+	month -= D1.get_month();
+	day -= D1.get_day();
+	hour -= D1.get_hour();
+	minute -= D1.get_minute();
+	second -= D1.get_second();
+
+	make_correct();
+}
+
+
+
+void  DateTime::cout_DateTime() { 
+	std::cout << year << ' ' << month << ' ' << day << ' ' << hour << ' ' << minute << ' ' << second << std::endl; 
+}

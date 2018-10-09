@@ -8,6 +8,9 @@
 
 #include "iList.h"
 
+
+#include "DateTime.h"
+
 using std::cout;
 using std::endl;
 
@@ -69,9 +72,49 @@ void test()
 	
 }
 
+void test_make_correct()
+{
+	DateTime A(0, 1, 75, 0, 0, 0);
+	A.cout_DateTime();
+
+	DateTime B(0, 4, 83, 0, 0, 0);
+	B.cout_DateTime();
+
+	DateTime C(5, 34, 5, 0, 0, 0);
+	C.cout_DateTime();
+
+	DateTime D(23, 56, 10, 0, 0, 0);
+	D.cout_DateTime();
+
+	DateTime E(0, 23, 657, 0, 0, 0);
+	E.cout_DateTime();
+}
+
+void testDateTime()
+{
+	DateTime D1(2018, 10, 10, 0, 0, 0);
+	D1.cout_weekday();
+
+	DateTime D2(2018, 9, 9, 0, 0, 0);
+
+	DateTime Dif = difference(D2, D1);
+
+	Dif.cout_DateTime();
+
+	D2.add_difference(Dif);
+
+	D2.cout_DateTime();
+
+	//D2.subtraction_difference(D1);
+
+	//D2.cout_DateTime();
+
+
+}
+
 int main()
 {
-	test();
+	test_make_correct();
 
 	system("pause");
 
