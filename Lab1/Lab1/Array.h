@@ -67,8 +67,7 @@ public:
 
 		//find by if
 		int find_by_if(bool(*f)(T)){
-			for (int i = 0; i < kol; i++)
-			{
+			for (int i = 0; i < kol; i++){
 				if (f(arr[i])) return i;
 			}
 			return -1;
