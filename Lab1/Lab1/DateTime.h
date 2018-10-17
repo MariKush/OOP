@@ -4,6 +4,7 @@
 
 #include "Random.h"
 
+
 bool intercalary(int y) {
 	if (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0)) return true;
 	else return false;
@@ -63,11 +64,11 @@ public:
 	void cout_weekday();
 	int shift_weekday();
 
-	void cout_DateTime();
+	void Cout();
 
 };
 
-DateTime Random() {
+DateTime Random(DateTime R) {
 	DateTime D;
 	return D;
 }
@@ -203,6 +204,6 @@ void DateTime::cout_weekday()
 }
 
 
-void  DateTime::cout_DateTime() {
+void  DateTime::Cout() {
 	std::cout << year << ' ' << month << ' ' << day << ' ' << hour << ' ' << minute << ' ' << second << std::endl;
 }

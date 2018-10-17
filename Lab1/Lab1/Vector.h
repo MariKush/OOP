@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "vList.h"
+#include "Cout.h"
 
 using std::vector;
 

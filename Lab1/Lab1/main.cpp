@@ -27,14 +27,16 @@ void test()
 {
 	iList<int> L(arr);
 
-	L.add_end(7);
-	L.add_end(3);
-	L.add_end(9);
-	L.add_end(0);
-	L.add_end(1);
-	L.add_end(4);
-	L.add_end(1);
-	L.add_end(8);
+	L.fill_random(10);
+
+	//L.add_end(7);
+	//L.add_end(3);
+	//L.add_end(9);
+	//L.add_end(0);
+	//L.add_end(1);
+	//L.add_end(4);
+	//L.add_end(1);
+	//L.add_end(8);
 
 	L.print();
 
@@ -75,19 +77,19 @@ void test()
 void testDateTimeR()
 {
 	DateTime A;
-	A.cout_DateTime();
+	A.Cout();
 
 	DateTime B;
-	B.cout_DateTime();
+	B.Cout();
 
 	DateTime C;
-	C.cout_DateTime();
+	C.Cout();
 
 	DateTime D;
-	D.cout_DateTime();
+	D.Cout();
 
 	DateTime E;
-	E.cout_DateTime();
+	E.Cout();
 }
 
 void testDateTime2()
@@ -99,15 +101,15 @@ void testDateTime2()
 
 	DateTime Dif = difference(D2, D1);
 
-	Dif.cout_DateTime();
+	Dif.Cout();
 
 	D2.add_difference(Dif);
 
-	D2.cout_DateTime();
+	D2.Cout();
 
 	//D2.subtraction_difference(D1);
 
-	//D2.cout_DateTime();
+	//D2.Cout();
 }
 
 int main()

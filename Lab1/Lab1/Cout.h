@@ -21,8 +21,3 @@ void Cout(double i) {
 void Cout(string i) {
 	cout << i << " ";
 }
-
-
-void Cout(DateTime i) {
-	i.cout_DateTime();
-}

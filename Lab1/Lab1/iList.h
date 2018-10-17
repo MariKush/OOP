@@ -7,8 +7,9 @@
 
 #include "vList.h"
 
-#include "DateTime.h"
 #include "Random.h"
+#include "DateTime.h"
+
 
 enum mode	{arr, list, vec, cycl};
 
@@ -64,7 +65,7 @@ public:
 	void fill_random(int n) {
 		for (int i = 0; i < n; i++)
 		{
-			add_end(Random());
+			add_end(Random(find_by_index(0)));
 		}
 	}
 
