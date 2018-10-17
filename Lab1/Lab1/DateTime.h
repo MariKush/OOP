@@ -39,7 +39,7 @@ public:
 		hour = h;
 		minute = min;
 		second = s;
-		//make_correct();
+		make_correct();
 	};
 
 	int get_year() { return year; }
@@ -49,7 +49,7 @@ public:
 	int get_minute() { return minute; }
 	int get_second() { return second; }
 
-	//void make_correct();
+	void make_correct();
 
 
 	bool is_correct() {
@@ -73,34 +73,36 @@ DateTime Random(DateTime R) {
 
 
 
-//void DateTime::make_correct() {
-//
-//	while (month < 1) {
-//		month += 12;
-//		year--;
-//	}
-//	while (month > 12) {
-//		month -= 12;
-//		year++;
-//	}
-//
-//	while (day < 1) {
-//		month--;
-//		if (month < 1) {
-//			month += 12;
-//			year--;
-//		}
-//		day += day_in_month(year, month);
-//	}
-//	while (day > day_in_month(year, month)) {
-//		day -= day_in_month(year, month);
-//		month++;
-//		if (month > 12) {
-//			month -= 12;
-//			year++;
-//		}
-//	}
-//}
+void DateTime::make_correct() {
+
+
+		while (month < 1) {
+			month += 12;
+			year--;
+		}
+		while (month > 12) {
+			month -= 12;
+			year++;
+		}
+
+		while (day < 1) {
+			month--;
+			if (month < 1) {
+				month += 12;
+				year--;
+			}
+			day += day_in_month(year, month);
+		}
+		while (day > day_in_month(year, month)) {
+			day -= day_in_month(year, month);
+			month++;
+			if (month > 12) {
+				month -= 12;
+				year++;
+			}
+		}
+
+}
 
 int DateTime::shift_weekday()
 {
@@ -126,28 +128,36 @@ void swap_DateTime(DateTime &D1, DateTime &D2)
 	D2 = D;
 }
 
-DateTime difference(DateTime D1, DateTime D2)
+
+
+
+int difference_days(DateTime D1, DateTime D2)
 {
 	if (D2.get_year() < D1.get_year()) swap_DateTime(D1, D2);
 	else if (D2.get_year() == D1.get_year())
 	{
 		if (D2.get_month() < D1.get_month()) swap_DateTime(D1, D2);
 		else if (D2.get_month() == D1.get_month())
-		{
 			if (D2.get_day() < D1.get_day()) swap_DateTime(D1, D2);
-			else if (D2.get_day() == D1.get_day())
-			{
-				if (D2.get_minute() < D1.get_minute()) swap_DateTime(D1, D2);
-				else if (D2.get_minute() == D1.get_minute())
-				{
-					if (D2.get_second() < D1.get_second()) swap_DateTime(D1, D2);
-				}
-			}
-		}
+		
 	}
 
-	DateTime D(D2.get_year() - D1.get_year(), D2.get_month() - D1.get_month(), D2.get_day() - D1.get_day(), D2.get_hour() - D1.get_hour(), D2.get_minute() - D1.get_minute(), D2.get_second() - D1.get_second());
-	return D;
+
+	int y2 = D2.get_year();
+	int y1 = D1.get_year();
+
+
+	int d = 0;
+	if(y1==y2) d += D2.shift_weekday() - D1.shift_weekday();
+	else d += D2.shift_weekday() + 365 + intercalary(y1) - D1.shift_weekday();
+
+
+	for (int i = y1 + 1; i < y2; i++)
+	{
+		d += 365 + intercalary(i);
+	}
+
+	return d;
 }
 
 
@@ -160,7 +170,7 @@ void DateTime::add_difference(DateTime D1)
 	minute += D1.get_minute();
 	second += D1.get_second();
 
-	//make_correct();
+	make_correct();
 }
 
 void DateTime::subtraction_difference(DateTime D1)
@@ -172,7 +182,7 @@ void DateTime::subtraction_difference(DateTime D1)
 	minute -= D1.get_minute();
 	second -= D1.get_second();
 
-	//make_correct();
+	make_correct();
 }
 
 void DateTime::cout_weekday()
@@ -200,8 +210,3 @@ void DateTime::cout_weekday()
 	}
 	std::cout << std::endl;
 }
-
-
-//void  DateTime::Cout() {
-//	std::cout << year << ' ' << month << ' ' << day << ' ' << hour << ' ' << minute << ' ' << second << std::endl;
-//}

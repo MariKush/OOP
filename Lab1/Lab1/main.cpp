@@ -82,39 +82,25 @@ void testDateTimeR()
 
 	L.print();
 
-	//DateTime A;
-	//A.Cout();
-	//
-	//DateTime B;
-	//B.Cout();
-	//
-	//DateTime C;
-	//C.Cout();
-	//
-	//DateTime D;
-	//D.Cout();
-	//
-	//DateTime E;
-	//E.Cout();
+
 }
 
 void testDateTime2()
 {
-	DateTime D1(2018, 10, 10, 0, 0, 0);
+	DateTime D1(2018, 10, 17, 5,6,7);
 	D1.cout_weekday();
+	Cout(D1);
 
-	DateTime D2(2018, 9, 9, 0, 0, 0);
+	DateTime D2(2018, 11, 6, 9, 0, 2);
 
-	DateTime Dif = difference(D2, D1);
+	Cout(D2);
 
-	Cout(Dif);
 
-	D2.add_difference(Dif);
+	int days = difference_days(D1, D2);
 
-	Cout(Dif);
+	cout << "days = " << days << endl;
 
-	//D2.subtraction_difference(D1);
-	//Cout(D2);
+	Cout(D2);
 
 }
 
