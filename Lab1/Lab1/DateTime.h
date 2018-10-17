@@ -1,6 +1,7 @@
 #pragma once
  
 #include <iostream>
+#include <cmath>
 
 #include "Random.h"
 
@@ -8,6 +9,10 @@
 bool intercalary(int y) {
 	if (y % 400 == 0 || (y % 100 != 0 && y % 4 == 0)) return true;
 	else return false;
+}
+
+int day_in_year(int year) {
+	return 365 + intercalary(year);
 }
 
 int day_in_month(int year, int month) {
@@ -58,7 +63,7 @@ public:
 		return true;
 	}
 
-	void add_difference(DateTime D1);
+	void add_difference(int d, DateTime D1);
 	void subtraction_difference(DateTime D1);
 
 	void cout_weekday();
@@ -121,48 +126,19 @@ int DateTime::shift_weekday()
 }
 
 
-void swap_DateTime(DateTime &D1, DateTime &D2)
-{
-	DateTime D = D1;
-	D1 = D2;
-	D2 = D;
-}
-
-
-
-
 int difference_days(DateTime D1, DateTime D2)
 {
-	if (D2.get_year() < D1.get_year()) swap_DateTime(D1, D2);
-	else if (D2.get_year() == D1.get_year())
-	{
-		if (D2.get_month() < D1.get_month()) swap_DateTime(D1, D2);
-		else if (D2.get_month() == D1.get_month())
-			if (D2.get_day() < D1.get_day()) swap_DateTime(D1, D2);
-		
-	}
 
-
-	int y2 = D2.get_year();
-	int y1 = D1.get_year();
-
-
-	int d = 0;
-	if(y1==y2) d += D2.shift_weekday() - D1.shift_weekday();
-	else d += D2.shift_weekday() + 365 + intercalary(y1) - D1.shift_weekday();
-
-
-	for (int i = y1 + 1; i < y2; i++)
-	{
-		d += 365 + intercalary(i);
-	}
+	int d = abs(D2.shift_weekday() - D1.shift_weekday());
 
 	return d;
 }
 
 
-void DateTime::add_difference(DateTime D1)
+void DateTime::add_difference(int d, DateTime D1)
 {
+	
+
 	year += D1.get_year();
 	month += D1.get_month();
 	day += D1.get_day();
