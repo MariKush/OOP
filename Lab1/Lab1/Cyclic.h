@@ -1,13 +1,13 @@
 #pragma once
 
+
 #include "vList.h"
 #include "Cout.h"
 
-//list of whatever type
-template<typename T> 
-class List :public vList<T> 
+template<typename T>
+class Cyclic :public vList<T>
 {
-	template<typename T> class Node  {
+	template<typename T> class Node {
 	public:
 		T v;
 		Node *next;
@@ -18,61 +18,46 @@ class List :public vList<T>
 	Node<T> *beg;
 	Node<T> *end;
 
-
 public:
 
-	//designer
-	List() { 
-		kol = 0; 
+	Cyclic() {
+		kol = 0;
 		beg = NULL;
-		end = NULL; 
-	}
+		end = NULL;
+	}   
 
-
-
-	//destructor
-	~List() {
-		if (end)
+	~Cyclic() {
+		while (kol != 0)                        
 		{
-			end->next = NULL;
-			while (beg->next)
-			{
-				end = beg;
-				beg = beg->next;
-				delete end;
-			}
-			delete end;
-			delete beg;
+			Node *temp = beg->next;
+			delete beg;                         
+			beg = temp;                         
+			kol--;                                
 		}
 	}
 
-	//size of the list
+    
+	//size of the CList
 	int size() {
 		return kol;
 	}
 
 
-	//add an item to the end of the list
 	bool add_end(T d) {
 		kol++;
-		if (!beg)
-		{
-			beg = new Node<T>;
-			end = beg;
-			end->v = d;
-			end->next = end;
-			
-			return true;
-		}
-		else
-		{
-			end->next = new Node<T>;
-			end = end->next;
-			end->v = d;
-			end->next = beg;
-			return true;
-		}
+		Node<T> *temp = new Node<T>;
+	     
+		temp->next = beg;                
+		temp->v = d;                     
 
+		if (beg != NULL)                 
+		{
+			end->next = temp;            
+			end = temp;                  
+		}
+		else beg = end = temp; 
+
+		return true;
 	}
 
 	//delete all elements of the list
@@ -92,7 +77,7 @@ public:
 	//delete k(th) element of the list
 	void del_k(int k) {
 		Node<T> *tmp = beg;
-		
+
 		if (k >= kol || k < 0) return;
 		kol--;
 		if (k == 0)
@@ -107,24 +92,24 @@ public:
 				tmp = tmp->next;
 			}
 			Node<T> *tmp2 = tmp->next;
-			if(k == kol) tmp->next = NULL;
+			if (k == kol) tmp->next = NULL;
 			else tmp->next = tmp->next->next;
 			delete tmp2;
-	
+
 		}
-		
-	
+
+
 	}
 
 	//find by index
-	T find_by_index(int k){
-	Node<T> *tmp = beg;
+	T find_by_index(int k) {
+		Node<T> *tmp = beg;
 
-	for (int i = 0; i < k; i++)
-	{
-		tmp = tmp->next;
-	}
-	return tmp->v;
+		for (int i = 0; i < k; i++)
+		{
+			tmp = tmp->next;
+		}
+		return tmp->v;
 	}
 
 	//find by value
@@ -155,10 +140,10 @@ public:
 		return -1;
 	}
 
-	//print the entire 
+	//print the entire list
 	void print() {
 		Node<T> *tmp = beg;
-	
+
 		for (int i = 0; i < kol; i++)
 		{
 			Cout(tmp->v);
@@ -167,4 +152,5 @@ public:
 		std::cout << std::endl;
 	}
 
+		
 };

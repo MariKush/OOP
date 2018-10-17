@@ -67,6 +67,12 @@ public:
 
 };
 
+DateTime Random() {
+	DateTime D;
+	return D;
+}
+
+
 
 //void DateTime::make_correct() {
 //

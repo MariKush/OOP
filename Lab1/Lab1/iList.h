@@ -3,10 +3,14 @@
 #include "Array.h"
 #include "List.h"
 #include "Vector.h"
+#include "Cyclic.h"
 
 #include "vList.h"
 
-enum mode	{arr, list, vec};
+#include "DateTime.h"
+#include "Random.h"
+
+enum mode	{arr, list, vec, cycl};
 
 template<typename T> class iList :public vList<T>
 {
@@ -20,6 +24,7 @@ public:
 			case arr:	p = new Array<T>; break;
 			case list:	p = new List<T>; break;
 			case vec:	p = new Vector<T>; break;
+			case cycl:  p = new Cyclic<T>; break;
 			default: p = new Array<T>; break;
 		}
 	}
@@ -56,5 +61,14 @@ public:
 		return p->print();
 	}
 
+	void fill_random(int n) {
+		for (int i = 0; i < n; i++)
+		{
+			add_end(Random());
+		}
+	}
+
 };
+
+
 

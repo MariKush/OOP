@@ -62,7 +62,7 @@ public:
 	//print the entire array
 	void print() {
 		for (int i = 0; i < (int)vec.size(); i++)
-			std::cout << vec[i] << " ";
+			Cout(vec[i]);
 		std::cout << std::endl;
 	}
 

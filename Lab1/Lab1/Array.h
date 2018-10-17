@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vList.h"
-
+#include "Cout.h"
 
 //array of whatever type
 template<typename T> class Array :public vList<T> 
@@ -74,7 +74,7 @@ public:
 		//print the entire array
 		void print(){
 			for (int i = 0; i < kol; i++)
-				std::cout << arr[i] << " ";
+				Cout(arr[i]);
 			std::cout << std::endl;
 		}
 
