@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ctime>
+//#include <cmath> 
 
 int Random(int a, int b)
 {
@@ -13,4 +14,15 @@ int Random(int a, int b)
 
 	return r;
 
+}
+
+double RandomD(int precision)
+{
+	int num = (int)pow(10, precision);
+
+	int int_part = rand() % 100;
+	int drob_part = rand() % num;
+	double a = double(drob_part) / num;//rand drob_part
+	double res = double(int_part) + a;
+	
 }

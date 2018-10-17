@@ -114,7 +114,9 @@ int main()
 {
 	srand(time(0));
 
-	testDateTimeR();
+	//testDateTimeR();
+
+	test();
 
 	system("pause");
 

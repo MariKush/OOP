@@ -8,15 +8,13 @@ template<typename T> class Array :public vList<T>
 {
 private:
 	   	T *arr = nullptr;
-		int kol; //the current number of elements in the array
+		int kol = 0; //the current number of elements in the array
 		int N = 1000; //maximum number of elements in the array
 
 public:
 		//designer
 		Array() {
-			kol = 0; 
 			arr = new T[N]; 
-		
 		}
 
 		//destructor
