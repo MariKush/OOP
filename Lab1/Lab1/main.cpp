@@ -17,7 +17,7 @@ using std::endl;
 
 template <typename T> bool b(T d)
 {
-	if (d % 4 == 0)return true;
+	if (d - 4 == 0)return true;
 	return false;
 }
 
@@ -25,7 +25,7 @@ template <typename T> bool b(T d)
 
 void test()
 {
-	iList<int> L(arr);
+	iList<double> L(arr);
 
 	L.fill_random(10);
 
@@ -76,20 +76,26 @@ void test()
 
 void testDateTimeR()
 {
-	DateTime A;
-	A.Cout();
+	iList<DateTime> L(cycl);
 
-	DateTime B;
-	B.Cout();
+	L.fill_random(10);
 
-	DateTime C;
-	C.Cout();
+	L.print();
 
-	DateTime D;
-	D.Cout();
-
-	DateTime E;
-	E.Cout();
+	//DateTime A;
+	//A.Cout();
+	//
+	//DateTime B;
+	//B.Cout();
+	//
+	//DateTime C;
+	//C.Cout();
+	//
+	//DateTime D;
+	//D.Cout();
+	//
+	//DateTime E;
+	//E.Cout();
 }
 
 void testDateTime2()
@@ -101,24 +107,26 @@ void testDateTime2()
 
 	DateTime Dif = difference(D2, D1);
 
-	Dif.Cout();
+	Cout(Dif);
 
 	D2.add_difference(Dif);
 
-	D2.Cout();
+	Cout(Dif);
 
 	//D2.subtraction_difference(D1);
+	//Cout(D2);
 
-	//D2.Cout();
 }
 
 int main()
 {
 	srand(time(0));
 
+	//test();
+
 	//testDateTimeR();
 
-	test();
+	testDateTime2();
 
 	system("pause");
 

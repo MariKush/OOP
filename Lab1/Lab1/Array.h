@@ -2,6 +2,7 @@
 
 #include "vList.h"
 #include "Cout.h"
+#include "Equally.h"
 
 //array of whatever type
 template<typename T> class Array :public vList<T> 
@@ -26,7 +27,7 @@ public:
 		//find by index
 		T find_by_index(int k) {
 			if(k < kol && k>=0)return arr[k];
-			else return (T)nullptr;
+			
 		}
 
 		//add an item to the end of the array
@@ -39,9 +40,10 @@ public:
 
 		//delete all elements of the array
 		void del_all() {
-			while (kol > 0) {
+			while (kol > 0)
+			{
 				kol--;
-				arr[kol] = (T)nullptr;
+
 			}
 		}
 
@@ -58,7 +60,7 @@ public:
 		//find by value
 		int find_by_value(T d){
 			for(int i = 0; i< kol;i ++)
-				if (arr[i] == d)return i;
+				if (Equally(arr[i], d))return i;
 			std::cout << "not find" << std::endl;
 			return -1;
 		}

@@ -64,8 +64,6 @@ public:
 	void cout_weekday();
 	int shift_weekday();
 
-	void Cout();
-
 };
 
 DateTime Random(DateTime R) {
@@ -204,6 +202,6 @@ void DateTime::cout_weekday()
 }
 
 
-void  DateTime::Cout() {
-	std::cout << year << ' ' << month << ' ' << day << ' ' << hour << ' ' << minute << ' ' << second << std::endl;
-}
+//void  DateTime::Cout() {
+//	std::cout << year << ' ' << month << ' ' << day << ' ' << hour << ' ' << minute << ' ' << second << std::endl;
+//}

@@ -3,6 +3,7 @@
 #include <vector>
 #include "vList.h"
 #include "Cout.h"
+#include "Equally.h"
 
 using std::vector;
 
@@ -44,7 +45,7 @@ public:
 	int find_by_value(T d) {
 		for (int i = 0; i < (int)vec.size(); i++)
 		{
-			if (d == vec[i])
+			if (Equally(d, vec[i]))
 				return i;
 		}
 		std::cout << "not find" << std::endl;

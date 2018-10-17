@@ -2,6 +2,7 @@
 
 #include "vList.h"
 #include "Cout.h"
+#include "Equally.h"
 
 //list of whatever type
 template<typename T> 
@@ -134,7 +135,7 @@ public:
 
 		while (tmp)
 		{
-			if (tmp->v == d) return j;
+			if (Equally(tmp->v, d)) return j;
 			tmp = tmp->next;
 			if (j > kol) return -1;
 			j++;
