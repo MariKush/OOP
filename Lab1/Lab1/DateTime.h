@@ -2,6 +2,7 @@
  
 #include <iostream>
 #include <cmath>
+#include <string>
 
 #include "Random.h"
 
@@ -63,32 +64,14 @@ public:
 	void add_difference_days(int d);
 
 	long int count();
-	void cout_weekday();
 	int shift_weekday();
+	void cout_weekday();
 
 };
 
 DateTime Random(DateTime R) {
 	DateTime D;
 	return D;
-}
-
-
-int DateTime::shift_weekday()
-{
-	if (!this->is_correct()) return -1;
-	int shift = 1;
-	for (int i = 1; i < year; i++)
-		if (intercalary(i))shift += 2;//in intercalary years weekday shifts on 2 days
-		else shift++;
-
-	for (int i = 1; i < month; i++)
-		shift += day_in_month(year, i);
-
-
-	shift = shift + day - 1;
-
-	return shift;
 }
 
 //the number of days from the beginning of the calendar to the date
@@ -126,6 +109,24 @@ void DateTime::add_difference_days(int d)
 	}
 
 }
+
+int DateTime::shift_weekday()
+{
+	if (!this->is_correct()) return -1;
+	int shift = 1;
+	for (int i = 1; i < year; i++)
+		if (intercalary(i))shift += 2;//in intercalary years weekday shifts on 2 days
+		else shift++;
+
+	for (int i = 1; i < month; i++)
+		shift += day_in_month(year, i);
+
+
+	shift = shift + day - 1;
+
+	return shift;
+}
+
 
 void DateTime::cout_weekday()
 {
