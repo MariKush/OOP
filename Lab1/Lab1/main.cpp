@@ -87,7 +87,7 @@ void testDateTimeR()
 
 void testDateTime2()
 {
-	DateTime D1(2018, 10, 17, 5,6,7);
+	DateTime D1(2016, 12, 17, 5, 6, 7);
 	D1.cout_weekday();
 	Cout(D1);
 
@@ -95,12 +95,17 @@ void testDateTime2()
 
 	Cout(D2);
 
+	cout << "D1.shift_weekday() = " << D1.shift_weekday() << endl;
+	cout << "D2.shift_weekday() = " << D2.shift_weekday() << endl;
+
 
 	int days = difference_days(D1, D2);
 
+	D1.add_difference(days);
+
 	cout << "days = " << days << endl;
 
-	Cout(D2);
+	Cout(D1);
 
 }
 

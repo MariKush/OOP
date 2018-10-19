@@ -44,7 +44,6 @@ public:
 		hour = h;
 		minute = min;
 		second = s;
-		make_correct();
 	};
 
 	int get_year() { return year; }
@@ -54,8 +53,6 @@ public:
 	int get_minute() { return minute; }
 	int get_second() { return second; }
 
-	void make_correct();
-
 
 	bool is_correct() {
 		if (month > 12 || month < 0 || hour > 23 || hour < 0 || minute > 59 || minute < 0 || second > 59 || second < 0) return false;
@@ -63,9 +60,9 @@ public:
 		return true;
 	}
 
-	void add_difference(int d, DateTime D1);
-	void subtraction_difference(DateTime D1);
+	void add_difference(int d);
 
+	long int count();
 	void cout_weekday();
 	int shift_weekday();
 
@@ -78,37 +75,6 @@ DateTime Random(DateTime R) {
 
 
 
-void DateTime::make_correct() {
-
-
-		while (month < 1) {
-			month += 12;
-			year--;
-		}
-		while (month > 12) {
-			month -= 12;
-			year++;
-		}
-
-		while (day < 1) {
-			month--;
-			if (month < 1) {
-				month += 12;
-				year--;
-			}
-			day += day_in_month(year, month);
-		}
-		while (day > day_in_month(year, month)) {
-			day -= day_in_month(year, month);
-			month++;
-			if (month > 12) {
-				month -= 12;
-				year++;
-			}
-		}
-
-}
-
 int DateTime::shift_weekday()
 {
 	if (!this->is_correct()) return -1;
@@ -120,45 +86,46 @@ int DateTime::shift_weekday()
 	for (int i = 1; i < month; i++)
 		shift += day_in_month(year, i);
 
+
 	shift = shift + day - 1;
 
 	return shift;
 }
 
 
+long int DateTime::count()
+{
+	long int d = 0;
+	for (int i = 1; i < year; i++) d = d + day_in_year(i);
+	for (int j = 1; j < month; j++) d = d + day_in_month(year, j);
+
+	return d + day;
+}
+
 int difference_days(DateTime D1, DateTime D2)
 {
 
-	int d = abs(D2.shift_weekday() - D1.shift_weekday());
+	int d = abs(D2.count() - D1.count());
 
 	return d;
 }
 
 
-void DateTime::add_difference(int d, DateTime D1)
+
+void DateTime::add_difference(int d)
 {
-	
+	for (int i = 0; i < d; i++) {
+		day++;
+		if (day > day_in_month(year, month)) {
+			day = 1;
+			month++;
+		}
+		if (month > 12) {
+			month = 1;
+			year++;
+		}
+	}
 
-	year += D1.get_year();
-	month += D1.get_month();
-	day += D1.get_day();
-	hour += D1.get_hour();
-	minute += D1.get_minute();
-	second += D1.get_second();
-
-	make_correct();
-}
-
-void DateTime::subtraction_difference(DateTime D1)
-{
-	year -= D1.get_year();
-	month -= D1.get_month();
-	day -= D1.get_day();
-	hour -= D1.get_hour();
-	minute -= D1.get_minute();
-	second -= D1.get_second();
-
-	make_correct();
 }
 
 void DateTime::cout_weekday()
