@@ -2,19 +2,22 @@
 
 #include "DateTime.h"
 
+
+//equality check for integers
 bool Equally(int a, int b)
 {
 	if (a == b) return true;
 	else return false;
 }
 
-
+//equality check for fractional number
 bool Equally(double a, double b)
 {
 	if (a - b < 0.000005) return true;
 	else return false;
 }
 
+//equality check for DateTime
 bool Equally(DateTime a, DateTime b)
 {
 	if (a.get_year() != b.get_year()) return false;

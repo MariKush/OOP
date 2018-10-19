@@ -60,7 +60,7 @@ public:
 		return true;
 	}
 
-	void add_difference(int d);
+	void add_difference_days(int d);
 
 	long int count();
 	void cout_weekday();
@@ -112,7 +112,7 @@ int difference_days(DateTime D1, DateTime D2)
 
 
 
-void DateTime::add_difference(int d)
+void DateTime::add_difference_days(int d)
 {
 	for (int i = 0; i < d; i++) {
 		day++;

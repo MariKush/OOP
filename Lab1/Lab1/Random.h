@@ -1,16 +1,15 @@
 #pragma once
 
 #include <ctime>
-//#include <cmath> 
 
-#include "DateTime.h"
 
+//random integer
 int Random(int r) {
 	r = rand();
-
 	return r;
 }
 
+//random integer on interval [a,b]
 int Random(int a, int b){
 	int r = 0;
 	if (a < b){
@@ -20,6 +19,7 @@ int Random(int a, int b){
 	return r;
 }
 
+//random fractional number
 double Random(double res)
 {
 	int num = 1e5;

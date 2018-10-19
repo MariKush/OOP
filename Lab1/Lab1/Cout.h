@@ -13,7 +13,6 @@ void Cout(int i) {
 	cout << i << " ";
 }
 
-
 void Cout(double i) {
 	cout << i << " ";
 }
