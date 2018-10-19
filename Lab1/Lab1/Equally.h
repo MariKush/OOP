@@ -5,7 +5,6 @@
 #include "DateTime.h"
 
 
-
 //equality check for integers
 bool Equally(int a, int b)
 {
@@ -18,6 +17,12 @@ bool Equally(double a, double b)
 {
 	if (abs(a - b) < 0.00005) return true;
 	else return false;
+}
+
+bool Equally(string a, string b)
+{
+	if (a == b) return true;
+	return false;
 }
 
 //equality check for DateTime
