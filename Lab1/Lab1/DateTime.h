@@ -74,7 +74,6 @@ DateTime Random(DateTime R) {
 }
 
 
-
 int DateTime::shift_weekday()
 {
 	if (!this->is_correct()) return -1;
@@ -92,7 +91,7 @@ int DateTime::shift_weekday()
 	return shift;
 }
 
-
+//the number of days from the beginning of the calendar to the date
 long int DateTime::count()
 {
 	long int d = 0;
@@ -102,16 +101,16 @@ long int DateTime::count()
 	return d + day;
 }
 
+//number of days between two dates
 int difference_days(DateTime D1, DateTime D2)
 {
-
 	int d = abs(D2.count() - D1.count());
 
 	return d;
 }
 
 
-
+//add difference of days to date
 void DateTime::add_difference_days(int d)
 {
 	for (int i = 0; i < d; i++) {

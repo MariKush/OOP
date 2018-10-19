@@ -11,7 +11,6 @@ using std::vector;
 template<typename T> class Vector :public vList<T> 
 {
 private:
-	
 	vector<T> vec;
 
 public:
@@ -48,7 +47,6 @@ public:
 			if (Equally(d, vec[i]))
 				return i;
 		}
-		std::cout << "not find" << std::endl;
 		return -1;
 	}
 

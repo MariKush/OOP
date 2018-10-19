@@ -1,6 +1,9 @@
 #pragma once
 
+#include <cmath>
+
 #include "DateTime.h"
+
 
 
 //equality check for integers
@@ -13,7 +16,7 @@ bool Equally(int a, int b)
 //equality check for fractional number
 bool Equally(double a, double b)
 {
-	if (a - b < 0.000005) return true;
+	if (abs(a - b) < 0.00005) return true;
 	else return false;
 }
 

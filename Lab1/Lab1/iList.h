@@ -17,6 +17,7 @@ template<typename T> class iList :public vList<T>
 {
 private:
 	vList<T>*p;
+	T zn;
 	
 public:
 
@@ -65,7 +66,7 @@ public:
 	void fill_random(int n) {
 		for (int i = 0; i < n; i++)
 		{
-			add_end(Random(find_by_index(0)));
+			add_end(Random(zn));
 		}
 	}
 
