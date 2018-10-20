@@ -15,7 +15,6 @@ class List :public vList<T>
 	};
 
 	int kol;
-
 	Node<T> *beg;
 	Node<T> *end;
 
@@ -133,8 +132,7 @@ public:
 		int j = 0;
 		Node<T> *tmp = beg;
 
-		while (tmp)
-		{
+		while (tmp){
 			if (Equally(tmp->v, d)) return j;
 			tmp = tmp->next;
 			if (j > kol) return -1;
@@ -147,9 +145,7 @@ public:
 	int find_by_if(bool(*f)(T)) {
 		Node<T> *tmp = beg;
 
-		for (int i = 0; i < kol; i++)
-		{
-
+		for (int i = 0; i < kol; i++){
 			if (f(tmp->v)) return i;
 			tmp = tmp->next;
 		}
@@ -160,8 +156,7 @@ public:
 	void print() {
 		Node<T> *tmp = beg;
 	
-		for (int i = 0; i < kol; i++)
-		{
+		for (int i = 0; i < kol; i++){
 			Cout(tmp->v);
 			tmp = tmp->next;
 		}
