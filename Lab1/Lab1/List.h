@@ -4,6 +4,7 @@
 #include "Cout.h"
 #include "Equally.h"
 
+
 //list of whatever type
 template<typename T> 
 class List :public vList<T> 

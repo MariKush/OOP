@@ -5,6 +5,7 @@
 #include "Cout.h"
 #include "Equally.h"
 
+
 template<typename T>
 class Cyclic :public vList<T>
 {
