@@ -2,6 +2,7 @@
 
 #include <ctime>
 
+
 //random integer
 int Random(int r) {
 	r = rand();

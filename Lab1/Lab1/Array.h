@@ -4,6 +4,7 @@
 #include "Cout.h"
 #include "Equally.h"
 
+
 //array of whatever type
 template<typename T> class Array :public vList<T> 
 {
@@ -27,7 +28,7 @@ public:
 		//find by index
 		T find_by_index(int k) {
 			if(k < kol && k>=0)return arr[k];
-			
+			exit(1);
 		}
 
 		//add an item to the end of the array

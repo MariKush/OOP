@@ -5,6 +5,7 @@
 #include "Cout.h"
 #include "Equally.h"
 
+
 using std::vector;
 
 //vector of whatever type
