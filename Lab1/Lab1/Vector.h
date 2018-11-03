@@ -9,7 +9,7 @@
 using std::vector;
 
 //vector of whatever type
-template<typename T> class Vector :public vList<T> 
+template<typename T> class Vector :public vList<T>
 {
 private:
 	vector<T> vec;

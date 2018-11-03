@@ -1,25 +1,28 @@
 #pragma once
 
+/**
+random for different types
+*/
+
 #include <ctime>
 
-
 //random integer
-int Random(int r) {
+inline int Random(int r) {
 	r = rand();
 	return r;
 }
 
 //random integer on interval [a,b]
-int Random(int a, int b){
+inline int Random(int a, int b) {
 	int r = 0;
-	if (a < b){
+	if (a < b) {
 		r = a + rand() % (b - a + 1);
 	}
 	return r;
 }
 
 //random fractional number
-double Random(double res){
+inline double Random(double res) {
 	int num = 1e5;
 	int int_part = rand() % 100;
 	int drob_part = rand() % num;
@@ -27,3 +30,4 @@ double Random(double res){
 	res = double(int_part) + a;
 	return res;
 }
+

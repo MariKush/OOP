@@ -6,10 +6,10 @@
 
 
 //list of whatever type
-template<typename T> 
-class List :public vList<T> 
+template<typename T>
+class List :public vList<T>
 {
-	template<typename T> class Node  {
+	template<typename T> class Node {
 	public:
 		T v;
 		Node *next;
@@ -23,10 +23,10 @@ class List :public vList<T>
 public:
 
 	//designer
-	List() { 
-		kol = 0; 
+	List() {
+		kol = 0;
 		beg = NULL;
-		end = NULL; 
+		end = NULL;
 	}
 
 
@@ -62,7 +62,7 @@ public:
 			end = beg;
 			end->v = d;
 			end->next = end;
-			
+
 			return true;
 		}
 		else
@@ -93,7 +93,7 @@ public:
 	//delete k(th) element of the list
 	void del_k(int k) {
 		Node<T> *tmp = beg;
-		
+
 		if (k >= kol || k < 0) return;
 		kol--;
 		if (k == 0)
@@ -108,24 +108,24 @@ public:
 				tmp = tmp->next;
 			}
 			Node<T> *tmp2 = tmp->next;
-			if(k == kol) tmp->next = NULL;
+			if (k == kol) tmp->next = NULL;
 			else tmp->next = tmp->next->next;
 			delete tmp2;
-	
+
 		}
-		
-	
+
+
 	}
 
 	//find by index
-	T find_by_index(int k){
-	Node<T> *tmp = beg;
+	T find_by_index(int k) {
+		Node<T> *tmp = beg;
 
-	for (int i = 0; i < k; i++)
-	{
-		tmp = tmp->next;
-	}
-	return tmp->v;
+		for (int i = 0; i < k; i++)
+		{
+			tmp = tmp->next;
+		}
+		return tmp->v;
 	}
 
 	//find by value
@@ -133,7 +133,7 @@ public:
 		int j = 0;
 		Node<T> *tmp = beg;
 
-		while (tmp){
+		while (tmp) {
 			if (Equally(tmp->v, d)) return j;
 			tmp = tmp->next;
 			if (j > kol) return -1;
@@ -146,7 +146,7 @@ public:
 	int find_by_if(bool(*f)(T)) {
 		Node<T> *tmp = beg;
 
-		for (int i = 0; i < kol; i++){
+		for (int i = 0; i < kol; i++) {
 			if (f(tmp->v)) return i;
 			tmp = tmp->next;
 		}
@@ -156,8 +156,8 @@ public:
 	//print the entire 
 	void print() {
 		Node<T> *tmp = beg;
-	
-		for (int i = 0; i < kol; i++){
+
+		for (int i = 0; i < kol; i++) {
 			Cout(tmp->v);
 			tmp = tmp->next;
 		}

@@ -1,10 +1,13 @@
 #pragma once
 
+/**
+cout for different types
+*/
+
 #include <iostream>
 #include <string>
 
 #include "DateTime.h"
-
 
 using std::cout;
 using std::endl;

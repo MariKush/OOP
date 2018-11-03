@@ -1,7 +1,9 @@
 #pragma once
 
-template<typename T> class vList
-{
+/**
+virtualList is class of virtual functions for redefinition
+*/
+template<typename T> class virtualList {
 public:
 	virtual bool add_end(T d) = 0;
 	virtual int size() = 0;
@@ -11,5 +13,4 @@ public:
 	virtual	int find_by_value(T d) = 0;
 	virtual int find_by_if(bool(*f)(T)) = 0;
 	virtual void print() = 0;
-
 };

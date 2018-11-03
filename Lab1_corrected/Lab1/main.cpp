@@ -1,28 +1,23 @@
 #include <iostream>
 
-#include "iList.h"
-
+#include "interfaceList.h"
 #include "DateTime.h"
-
 
 using std::cout;
 using std::endl;
 
-
-//to search by condition
-template <typename T> bool b(T d)
-{
+//for search by condition
+template <typename T> bool b(T d) {
 	if (d > 50)return true;
 	return false;
 }
 
+//testing of the first part of the laboratory work(list) and functions for it
+void testNumbers() {
 
-
-void testNumbers()
-{
 	cout << "______________________________testNumbers()_____________________________" << endl;
 
-	iList<int> L(arr);
+	interfaceList<int> L(linked);
 	L.fill_random(10);
 	L.print();
 
@@ -48,24 +43,24 @@ void testNumbers()
 	L.print();
 
 	cout << endl;
-	
+
 	L.del_all();
 
 }
 
-void testDateTimeR()
-{
+//fill in a list of random dates
+void testDateTimeR() {
 	cout << "___________________________testDateTimeR__________________________________" << endl;
 
-	iList<DateTime> L(cycl);
+	interfaceList<DateTime> L(array);
 	L.fill_random(10);
 	L.print();
 
 	cout << endl;
 }
 
-void testDateTimeMy()
-{
+//action on specific dates
+void testDateTimeMy() {
 	cout << "___________________________testDateTimeMy__________________________________" << endl;
 
 	DateTime D1(2018, 10, 19, 5, 6, 7);
@@ -79,7 +74,7 @@ void testDateTimeMy()
 	//cout << "D1.count() = " << D1.count() << endl;
 	//cout << "D2.count() = " << D2.count() << endl;
 
-	int days = difference_days(D1, D2);
+	int days = D1.difference_days(D2);
 
 	D1.add_difference_days(days);
 
@@ -87,32 +82,28 @@ void testDateTimeMy()
 
 	Cout(D1);
 
-	iList<string> L(cycl);
+	interfaceList<string> L(cyclicl);
 	L.add_end("Monday");
-	L.add_end("Tuesday"); 
+	L.add_end("Tuesday");
 	L.add_end("Wednesday");
 	L.add_end("Thursday");
 	L.add_end("Friday");
 	L.add_end("Saturday");
 	L.add_end("Sunday");
 
-	cout << "Day of the week: " << L.find_by_index(D1.count()) << endl;
+	cout << "Day of the week: " << L.find_by_index(D1.count_days_from_beg()) << endl;
 
 	cout << endl;
 
 }
 
-int main()
-{
+int main() {
 	srand(time(0));
 
 	testNumbers();
-
 	testDateTimeR();
-
 	testDateTimeMy();
 
 	system("pause");
-
 	return 0;
 }

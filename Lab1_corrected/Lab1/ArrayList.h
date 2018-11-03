@@ -1,13 +1,12 @@
 #pragma once
 
-#include "vList.h"
+#include "virtualList.h"
 #include "Cout.h"
 #include "Equally.h"
 
 
 //array of whatever type
-template<typename T> class Array :public vList<T>
-{
+template<typename T> class ArrayList :public virtualList<T> {
 private:
 	T *arr = nullptr;
 	int kol = 0; //the current number of elements in the array
@@ -15,12 +14,12 @@ private:
 
 public:
 	//designer
-	Array() {
+	ArrayList() {
 		arr = new T[N];
 	}
 
 	//destructor
-	~Array() { delete[] arr; }
+	~ArrayList() { delete[] arr; }
 
 	//size of the array
 	int size() { return kol; }
@@ -41,10 +40,8 @@ public:
 
 	//delete all elements of the array
 	void del_all() {
-		while (kol > 0)
-		{
+		while (kol > 0) {
 			kol--;
-
 		}
 	}
 

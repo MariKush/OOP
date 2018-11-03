@@ -48,7 +48,7 @@ void testNumbers()
 	L.print();
 
 	cout << endl;
-	
+
 	L.del_all();
 
 }
@@ -89,7 +89,7 @@ void testDateTimeMy()
 
 	iList<string> L(cycl);
 	L.add_end("Monday");
-	L.add_end("Tuesday"); 
+	L.add_end("Tuesday");
 	L.add_end("Wednesday");
 	L.add_end("Thursday");
 	L.add_end("Friday");

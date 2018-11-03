@@ -1,5 +1,5 @@
 #pragma once
- 
+
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -27,7 +27,7 @@ class DateTime
 {
 private:
 	int year, month, day, hour, minute, second;
-	
+
 public:
 	DateTime()
 	{

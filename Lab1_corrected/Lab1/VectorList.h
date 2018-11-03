@@ -1,16 +1,14 @@
 #pragma once
 
 #include <vector>
-#include "vList.h"
+#include "virtualList.h"
 #include "Cout.h"
 #include "Equally.h"
-
 
 using std::vector;
 
 //vector of whatever type
-template<typename T> class Vector :public vList<T> 
-{
+template<typename T> class VectorList :public virtualList<T> {
 private:
 	vector<T> vec;
 
@@ -43,8 +41,7 @@ public:
 
 	//find by value
 	int find_by_value(T d) {
-		for (int i = 0; i < (int)vec.size(); i++)
-		{
+		for (int i = 0; i < (int)vec.size(); i++) {
 			if (Equally(d, vec[i]))
 				return i;
 		}
@@ -53,14 +50,13 @@ public:
 
 	//find by if
 	int find_by_if(bool(*f)(T)) {
-		for (int i = 0; i < (int)vec.size(); i++)
-		{
+		for (int i = 0; i < (int)vec.size(); i++) {
 			if (f(vec[i])) return i;
 		}
 		return -1;
 	}
 
-	//print the entire array
+	//print the entire vector
 	void print() {
 		for (int i = 0; i < (int)vec.size(); i++)
 			Cout(vec[i]);

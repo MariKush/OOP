@@ -8,36 +8,36 @@
 
 #include "vList.h"
 
-#include "Random.h"
-#include "DateTime.h"
+//#include "Random.h"
+//#include "DateTime.h"
 
 
-enum mode	{arr, list, vec, cycl};
+enum mode { arr, list, vec, cycl };
 
 template<typename T> class iList :public vList<T>
 {
 private:
 	vList<T>*p;
 	T zn;
-	
+
 public:
 
-	iList(int mode) {	
-		switch (mode){
-			case arr:	p = new Array<T>; break;
-			case list:	p = new List<T>; break;
-			case vec:	p = new Vector<T>; break;
-			case cycl:  p = new Cyclic<T>; break;
-			default: p = new Array<T>; break;
+	iList(int mode) {
+		switch (mode) {
+		case arr:	p = new Array<T>; break;
+		case list:	p = new List<T>; break;
+		case vec:	p = new Vector<T>; break;
+		case cycl:  p = new Cyclic<T>; break;
+		default: p = new Array<T>; break;
 		}
 	}
-	
-	bool add_end(T d){	
-		return p->add_end(d);	
+
+	bool add_end(T d) {
+		return p->add_end(d);
 	}
 
-	int size() {	
-		return p->size();	
+	int size() {
+		return p->size();
 	}
 
 	void del_all() {
