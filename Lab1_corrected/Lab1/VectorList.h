@@ -1,5 +1,14 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description class VectorList (vector of whatever type)
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include <vector>
 #include "virtualList.h"
 #include "Cout.h"
@@ -7,7 +16,6 @@
 
 using std::vector;
 
-//vector of whatever type
 template<typename T> class VectorList :public virtualList<T> {
 private:
 	vector<T> vec;

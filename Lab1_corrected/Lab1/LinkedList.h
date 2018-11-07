@@ -1,12 +1,19 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description class LinkedList (linked list of whatever type)
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include "BaseList.h"
 #include "Cout.h"
 #include "Equally.h"
 
-/**
-linked list of whatever type
-*/
+
 template<typename T>
 class LinkedList :public BaseList<T> {
 	using BaseList<T>::kol;

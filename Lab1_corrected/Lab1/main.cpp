@@ -1,3 +1,12 @@
+/**
+	K-28
+	main.cpp
+	Purpose: main program file with tests
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include <iostream>
 
 #include "interfaceList.h"
@@ -6,13 +15,24 @@
 using std::cout;
 using std::endl;
 
-//for search by condition
+
+/**
+	For search by condition (for int and double)
+
+	@param variable type int or double d
+	@return true, if d > 50, else false
+*/
 template <typename T> bool b(T d) {
 	if (d > 50)return true;
 	return false;
 }
 
-//testing of the first part of the laboratory work(list) and functions for it
+/**
+	Testing of the first part of the laboratory work(list) and functions for it
+
+	@param -
+	@return -
+*/
 void testNumbers() {
 
 	cout << "______________________________testNumbers()_____________________________" << endl;
@@ -48,7 +68,12 @@ void testNumbers() {
 
 }
 
-//fill in a list of random dates
+/**
+	Fill in a list of random dates and print it
+
+	@param -
+	@return -
+*/
 void testDateTimeR() {
 	cout << "___________________________testDateTimeR__________________________________" << endl;
 
@@ -59,7 +84,13 @@ void testDateTimeR() {
 	cout << endl;
 }
 
-//action on specific dates
+/**
+	Testing of the second part of the laboratory work(DateTime) and functions for it
+	(action on specific dates)
+
+	@param -
+	@return -
+*/
 void testDateTimeMy() {
 	cout << "___________________________testDateTimeMy__________________________________" << endl;
 
@@ -97,6 +128,12 @@ void testDateTimeMy() {
 
 }
 
+/**
+	main function
+
+	@param -
+	@return -
+*/
 int main() {
 	srand(time(0));
 

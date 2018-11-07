@@ -1,7 +1,12 @@
 #pragma once
 
 /**
-virtualList is class of virtual functions for redefinition
+	K-28
+	DataTime.cpp
+	Purpose: description class virtualList of virtual functions for redefinition
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
 */
 template<typename T> class virtualList {
 public:

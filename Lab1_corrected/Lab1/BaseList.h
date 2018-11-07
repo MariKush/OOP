@@ -1,5 +1,17 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description class BaseList
+	(base (identical for cyclic and non-cyclic) list whatever type,
+	parent class for cyclic and linked list)
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
+
 #include "virtualList.h"
 #include "Cout.h"
 #include "Equally.h"
@@ -10,7 +22,6 @@ public:
 	Node *next;
 };
 
-//list of whatever type
 template<typename T>
 class BaseList :public virtualList<T> {
 protected:
@@ -32,6 +43,7 @@ public:
 		return kol;
 	}
 
+	//delete all elements 
 	void del_all() {
 		end->next = NULL;
 		while (beg->next) {

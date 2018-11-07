@@ -1,18 +1,33 @@
 #pragma once
 
 /**
-random for different types
+	K-28
+	DataTime.cpp
+	Purpose: random for different types
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
 */
 
 #include <ctime>
 
-//random integer
+/**
+	Random integer
+
+	@param int variable
+	@return random integer
+*/
 inline int Random(int r) {
 	r = rand();
 	return r;
 }
 
-//random integer on interval [a,b]
+/**
+	Random integer on interval [a,b]
+
+	@param two int variable a and b (beginning and end of the interval)
+	@return random integer
+*/
 inline int Random(int a, int b) {
 	int r = 0;
 	if (a < b) {
@@ -21,7 +36,12 @@ inline int Random(int a, int b) {
 	return r;
 }
 
-//random fractional number
+/**
+	Random double
+
+	@param double variable 
+	@return random double
+*/
 inline double Random(double res) {
 	int num = 1e5;
 	int int_part = rand() % 100;

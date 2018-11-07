@@ -1,7 +1,12 @@
 #pragma once
 
 /**
-cout for different types
+	K-28
+	DataTime.cpp
+	Purpose: cout for different types
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
 */
 
 #include <iostream>

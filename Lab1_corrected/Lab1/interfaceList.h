@@ -1,5 +1,15 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description interface List
+	allows to choose the modes of work with the list
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include "ArrayList.h"
 #include "LinkedList.h"
 #include "VectorList.h"
@@ -12,10 +22,6 @@ list modes
 */
 enum mode { array, linked, vec, cyclicl };
 
-/**
-interface List
-allows you to choose the modes of work with the list
-*/
 template<typename T> class interfaceList :public virtualList<T> {
 private:
 	virtualList<T> *p;

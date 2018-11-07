@@ -1,5 +1,14 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description class CyclicList (cyclic list of whatever type)
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include "BaseList.h"
 #include "Cout.h"
 #include "Equally.h"
@@ -12,7 +21,7 @@ class CyclicList :public BaseList<T> {
 	using BaseList<T>::end;
 
 public:
-
+	//destructor
 	~CyclicList() {
 		while (kol != 0) {
 			Node *temp = beg->next;
@@ -22,6 +31,7 @@ public:
 		}
 	}
 
+	//add an item to the end of the array
 	bool add_end(T d) {
 		kol++;
 		Node<T> *temp = new Node<T>;

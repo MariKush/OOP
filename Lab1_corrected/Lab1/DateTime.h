@@ -1,5 +1,14 @@
 #pragma once
 
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description functions for class DataTime and implementation random for DataTime
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -49,7 +58,12 @@ public:
 
 };
 
-//to fill the array with random dates
+/**
+	Random DateTime
+
+	@param DateTime variable
+	@return random DateTime
+*/
 inline DateTime Random(DateTime R) {
 	DateTime D;
 	return D;
