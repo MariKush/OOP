@@ -1,13 +1,20 @@
 #pragma once
 
-#include "vList.h"
+/**
+	K-28
+	DataTime.cpp
+	Purpose: description class ArrayList (array of whatever type)
+
+	@author Mariia Kushnirenko
+	@version 1.1 7/11/18
+*/
+
+#include "virtualList.h"
 #include "Cout.h"
 #include "Equally.h"
 
 
-//array of whatever type
-template<typename T> class Array :public vList<T>
-{
+template<typename T> class ArrayList :public virtualList<T> {
 private:
 	T *arr = nullptr;
 	int kol = 0; //the current number of elements in the array
@@ -15,12 +22,12 @@ private:
 
 public:
 	//designer
-	Array() {
+	ArrayList() {
 		arr = new T[N];
 	}
 
 	//destructor
-	~Array() { delete[] arr; }
+	~ArrayList() { delete[] arr; }
 
 	//size of the array
 	int size() { return kol; }
@@ -41,10 +48,8 @@ public:
 
 	//delete all elements of the array
 	void del_all() {
-		while (kol > 0)
-		{
+		while (kol > 0) {
 			kol--;
-
 		}
 	}
 

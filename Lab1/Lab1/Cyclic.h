@@ -26,19 +26,19 @@ public:
 		kol = 0;
 		beg = NULL;
 		end = NULL;
-	}   
+	}
 
 	~Cyclic() {
-		while (kol != 0)                        
+		while (kol != 0)
 		{
 			Node *temp = beg->next;
-			delete beg;                         
-			beg = temp;                         
-			kol--;                                
+			delete beg;
+			beg = temp;
+			kol--;
 		}
 	}
 
-    
+
 	//size of the CList
 	int size() {
 		return kol;
@@ -48,16 +48,16 @@ public:
 	bool add_end(T d) {
 		kol++;
 		Node<T> *temp = new Node<T>;
-	     
-		temp->next = beg;                
-		temp->v = d;                     
 
-		if (beg != NULL)                 
+		temp->next = beg;
+		temp->v = d;
+
+		if (beg != NULL)
 		{
-			end->next = temp;            
-			end = temp;                  
+			end->next = temp;
+			end = temp;
 		}
-		else beg = end = temp; 
+		else beg = end = temp;
 
 		return true;
 	}
@@ -154,5 +154,5 @@ public:
 		std::cout << std::endl;
 	}
 
-		
+
 };
