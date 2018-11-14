@@ -68,6 +68,28 @@ void testNumbers() {
 
 }
 
+void testString() {
+	cout << "______________________________testString()_____________________________" << endl;
+
+	interfaceList<string> L(linked);
+	L.add_end("35146");
+	L.add_end("3fg46");
+	L.add_end("ad46");
+
+	L.print();
+
+	L.del_k(1);
+	cout << "... del 1 el ..." << endl;
+
+	L.print();
+
+	cout << endl;
+
+	L.del_all();
+
+
+}
+
 /**
 	Fill in a list of random dates and print it
 
@@ -77,8 +99,17 @@ void testNumbers() {
 void testDateTimeR() {
 	cout << "___________________________testDateTimeR__________________________________" << endl;
 
-	interfaceList<DateTime> L(array);
+	interfaceList<DateTime> L(vec);
 	L.fill_random(10);
+
+	L.print();
+
+	L.del_k(1);
+	cout << "... del 1 el ..." << endl;
+
+	DateTime D(2018, 11, 10, 0, 0, 0);
+	L.add_end(D);
+
 	L.print();
 
 	cout << endl;
@@ -137,6 +168,7 @@ void testDateTimeMy() {
 int main() {
 	srand(time(0));
 
+	testString();
 	testNumbers();
 	testDateTimeR();
 	testDateTimeMy();
