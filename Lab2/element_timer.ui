@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TimerWindow</class>
- <widget class="QDialog" name="TimerWindow">
+ <class>ElementTimer</class>
+ <widget class="QDialog" name="ElementTimer">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>179</height>
+    <width>353</width>
+    <height>193</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QListWidget" name="list_of_timers">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>10</y>
-     <width>181</width>
-     <height>141</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_new">
+  <widget class="QTimeEdit" name="timeEdit">
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>160</y>
-     <width>80</width>
-     <height>16</height>
+     <y>40</y>
+     <width>118</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="displayFormat">
+    <string>H:mm:ss</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="return_time">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>90</y>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">

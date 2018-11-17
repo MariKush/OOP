@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(alarms, SIGNAL(alarm_ring()),this, SLOT(call_ring()));
+    connect(timers, SIGNAL(timer_ring()),this, SLOT(call_ring()));
 }
 
 MainWindow::~MainWindow()
@@ -25,8 +26,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_gotoTimer_clicked()//open timer window
 {
-    timers.show();
-    timers.setWindowTitle("Timer");
+    timers->show();
+    timers->setWindowTitle("Timer");
 }
 
 void MainWindow::on_gotoAlarm_clicked()

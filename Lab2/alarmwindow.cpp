@@ -12,15 +12,13 @@
 #include <QTimer>
 #include <QColor>
 
-QString time_to(QTime time)
-{
-    QTime tmp(0,0);
-    int secto=QTime::currentTime().secsTo(time);
-    tmp=tmp.addSecs(secto);
-    QChar s=':';
-    if (secto%2==1)s=' ';
-    return tmp.toString("h")+s+tmp.toString("mm")+s+tmp.toString("ss");
-}
+/*
+    Calculating time to a given time point
+
+    @param QTime time
+    @return string in the form h:mm:ss
+*/
+
 
 
 AlarmWindow::AlarmWindow(QWidget *parent) :
@@ -38,7 +36,6 @@ AlarmWindow::~AlarmWindow()
 {
     delete ui;
 }
-
 
 void AlarmWindow::on_add_new_alarm_clicked()
 {

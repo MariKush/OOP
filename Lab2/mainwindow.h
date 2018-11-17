@@ -35,7 +35,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    TimerWindow timers;
+    TimerWindow *timers=new TimerWindow;
     AlarmWindow *alarms=new AlarmWindow;
     Ring general_ring;
 };

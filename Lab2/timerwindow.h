@@ -9,8 +9,8 @@
     @version 1.1 17/11/18
 */
 
-
-#include <QDialog>
+#include "alarmwindow.h"
+#include <element_timer.h>
 
 namespace Ui {
 class TimerWindow;
@@ -23,9 +23,18 @@ class TimerWindow : public QDialog
 public:
     explicit TimerWindow(QWidget *parent = nullptr);
     ~TimerWindow();
+signals:
+    void timer_ring();
+
+private slots:
+    void on_add_new_clicked();
+    void push(ElementTimer *el);
+    void output_list_of_timers();
+    void check();
 
 private:
     Ui::TimerWindow *ui;
+    QVector<ElementTimer*> timers;
 };
 
 #endif // TIMERWINDOW_H
