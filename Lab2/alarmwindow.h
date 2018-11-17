@@ -1,6 +1,14 @@
 #ifndef ALARMWINDOW_H
 #define ALARMWINDOW_H
 
+/*
+    K-28
+    alarmwindow.h
+    Purpose: description class AlarmWindow
+    @author Mariia Kushnirenko
+    @version 1.1 17/11/18
+*/
+
 #include <QDialog>
 #include "element_alarm.h"
 
@@ -20,7 +28,7 @@ signals:
 
 private slots:
     void on_add_new_alarm_clicked();
-    void push(element_alarm *);
+    void push(ElementAlarm *);
     void output_list_of_alarm();
     void check_alarms();
     void output_correct_buttons_name();
@@ -30,7 +38,7 @@ private slots:
 
 private:
     Ui::AlarmWindow *ui;
-    QVector<element_alarm*> alarms;
+    QVector<ElementAlarm*> alarms;
 };
 
 #endif // ALARMWINDOW_H

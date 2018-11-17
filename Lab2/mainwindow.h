@@ -1,6 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/*
+    K-28
+    mainwindow.h
+    Purpose: description class MainWindow
+    @author Mariia Kushnirenko
+    @version 1.1 17/11/18
+*/
+
+
 #include <QMainWindow>
 #include "timerwindow.h"
 #include "alarmwindow.h"
@@ -28,7 +37,7 @@ private:
     Ui::MainWindow *ui;
     TimerWindow timers;
     AlarmWindow *alarms=new AlarmWindow;
-    ring general_ring;
+    Ring general_ring;
 };
 
 #endif // MAINWINDOW_H

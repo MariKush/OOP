@@ -1,3 +1,12 @@
+/*
+    K-28
+    alarmwindow.cpp
+    Purpose: implementation of class AlarmWindow functions
+    @author Mariia Kushnirenko
+    @version 1.1 17/11/18
+*/
+
+
 #include "alarmwindow.h"
 #include "ui_alarmwindow.h"
 #include <QTimer>
@@ -33,12 +42,12 @@ AlarmWindow::~AlarmWindow()
 
 void AlarmWindow::on_add_new_alarm_clicked()
 {
-    element_alarm *el_al=new element_alarm;
+    ElementAlarm *el_al=new ElementAlarm;
     el_al->show();
-    connect(el_al, SIGNAL(return_element_alarm(element_alarm *)), this, SLOT(push(element_alarm*)));
+    connect(el_al, SIGNAL(return_element_alarm(ElementAlarm *)), this, SLOT(push(ElementAlarm*)));
 }
 
-void AlarmWindow::push(element_alarm * el)
+void AlarmWindow::push(ElementAlarm * el)
 {
     alarms.push_back(el);
 }

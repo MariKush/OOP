@@ -1,25 +1,35 @@
 #ifndef ELEMENT_ALARM_H
 #define ELEMENT_ALARM_H
+
+/*
+    K-28
+    element_alarm.h
+    Purpose: description class ElementAlarm
+    @author Mariia Kushnirenko
+    @version 1.1 17/11/18
+*/
+
+
 #include<QDateTime>
 #include <QDialog>
 #include <QDebug>
 namespace Ui {
-class element_alarm;
+class ElementAlarm;
 }
 
-class element_alarm : public QDialog
+class ElementAlarm : public QDialog
 {
     Q_OBJECT
 
 public:
-    Ui::element_alarm *ui;
-    explicit element_alarm(QWidget *parent = nullptr);
-    ~element_alarm();
+    Ui::ElementAlarm *ui;
+    explicit ElementAlarm(QWidget *parent = nullptr);
+    ~ElementAlarm();
 
     QTime time;
     bool is_turn = false;
 signals:
-    void return_element_alarm(element_alarm *el);
+    void return_element_alarm(ElementAlarm *el);
 
 private slots:
     void on_return_time_clicked();

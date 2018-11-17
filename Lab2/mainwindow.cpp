@@ -1,3 +1,12 @@
+/*
+    K-28
+    mainwindow.cpp
+    Purpose: implementation of class MainWindow functions
+    @author Mariia Kushnirenko
+    @version 1.1 17/11/18
+*/
+
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 

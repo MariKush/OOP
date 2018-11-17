@@ -29,15 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     timerwindow.cpp \
     alarmwindow.cpp \
-    element_alarm.cpp \
-    ring.cpp
+    ring.cpp \
+    element_alarm.cpp
 
 HEADERS += \
         mainwindow.h \
     timerwindow.h \
     alarmwindow.h \
-    element_alarm.h \
-    ring.h
+    ring.h \
+    element_alarm.h
 
 FORMS += \
         mainwindow.ui \
