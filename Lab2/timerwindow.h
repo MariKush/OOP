@@ -27,11 +27,11 @@ signals:
     void timer_ring();
 
 private slots:
-    void on_add_new_clicked();
+    void on_add_new_timer_clicked();
     void push_timer(ElementTimer *el);
-    void output_correct_buttons_name();
+    void output_correct_timer_buttons_name();
     void output_list_of_timers();
-    void check();
+    void check_timer();
     void on_start_stop_timer_clicked();
     void on_pause_continue_timer_clicked();
     void on_delete_timer_clicked();

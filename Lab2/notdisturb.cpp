@@ -1,3 +1,12 @@
+/*
+    K-28
+    notdisturb.cpp
+    Purpose: implementation of class NotDisturb functions
+    @author Mariia Kushnirenko
+    @version 1.1 20/11/18
+*/
+
+
 #include "notdisturb.h"
 #include "ui_notdisturb.h"
 
@@ -13,6 +22,12 @@ NotDisturb::~NotDisturb()
     delete ui;
 }
 
+/*
+    Сhecks if can call
+
+    @param -
+    @return true, if can, else false
+*/
 bool NotDisturb::can_call()
 {
     qDebug()<<1;

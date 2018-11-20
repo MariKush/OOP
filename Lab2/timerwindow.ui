@@ -57,7 +57,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="add_new">
+      <widget class="QPushButton" name="add_new_timer">
        <property name="text">
         <string>add new</string>
        </property>

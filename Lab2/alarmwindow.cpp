@@ -71,7 +71,7 @@ QString AlarmWindow::time_to(QTime time)
 
 
 /*
-    Output list of alarm
+    Output list of alarms
 
     @param -
     @return -
@@ -97,7 +97,7 @@ void AlarmWindow::output_list_of_alarm()
 }
 
 /*
-    Output correct buttons name
+    Output correct alarm buttons name
 
     @param -
     @return -

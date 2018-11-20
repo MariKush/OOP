@@ -1,6 +1,14 @@
 #ifndef NOTDISTURB_H
 #define NOTDISTURB_H
 
+/*
+    K-28
+    notdisturb.h
+    Purpose: description class NotDisturb
+    @author Mariia Kushnirenko
+    @version 1.1 20/11/18
+*/
+
 #include <QDialog>
 #include <QDebug>
 namespace Ui {

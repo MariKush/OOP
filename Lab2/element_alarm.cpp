@@ -23,7 +23,13 @@ ElementAlarm::~ElementAlarm()
     delete ui;
 }
 
-void ElementAlarm::on_return_time_clicked()
+/*
+    Setting the alarm for a certain time
+
+    @param -
+    @return -
+*/
+void ElementAlarm::on_set_time_alarm_clicked()
 {
     time=ui->timeEdit->time();
     time.setHMS(time.hour(), time.minute(),0);

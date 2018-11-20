@@ -28,7 +28,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="return_time">
+    <widget class="QPushButton" name="set_timer_time">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
        <horstretch>0</horstretch>

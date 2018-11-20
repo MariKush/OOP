@@ -24,28 +24,43 @@ TimerWindow::~TimerWindow()
     delete ui;
 }
 
+/*
+    Add new timer after clicked
 
-void TimerWindow::on_add_new_clicked()
+    @param -
+    @return -
+*/
+void TimerWindow::on_add_new_timer_clicked()
 {
     ElementTimer *el_ti=new ElementTimer;
     el_ti->show();
     connect(el_ti,SIGNAL(return_element_timer(ElementTimer *)), this, SLOT(push_timer(ElementTimer *)));
 }
 
+/*
+    Insert timer into list of timers
+
+    @param ElementAlarm * el
+    @return -
+*/
 void TimerWindow::push_timer(ElementTimer *el)
 {
     timers.push_back(el);
-    connect(el->timer, SIGNAL(timeout()), this, SLOT(check()));
+    connect(el->timer, SIGNAL(timeout()), this, SLOT(check_timer()));
 }
 
-void TimerWindow::check()
+void TimerWindow::check_timer()
 {
     emit timer_ring();
 }
 
+/*
+    Output correct timer buttons name
 
-
-void TimerWindow::output_correct_buttons_name()
+    @param -
+    @return -
+*/
+void TimerWindow::output_correct_timer_buttons_name()
 {
     int current_row=-1;
     current_row=ui->list_of_timers->currentRow();
@@ -86,9 +101,15 @@ void TimerWindow::output_correct_buttons_name()
     }
 }
 
+/*
+    Output list of timers
+
+    @param -
+    @return -
+*/
 void TimerWindow::output_list_of_timers()
 {
-    output_correct_buttons_name();
+    output_correct_timer_buttons_name();
     int current_row=ui->list_of_timers->currentRow();
     ui->list_of_timers->clear();
     int size_of_list=timers.size();
@@ -114,6 +135,12 @@ void TimerWindow::output_list_of_timers()
     ui->list_of_timers->setCurrentRow(current_row);
 }
 
+/*
+    Switches (start or stop) timer
+
+    @param -
+    @return -
+*/
 void TimerWindow::on_start_stop_timer_clicked()
 {
     int current_row=ui->list_of_timers->currentRow();
@@ -129,6 +156,12 @@ void TimerWindow::on_start_stop_timer_clicked()
     }
 }
 
+/*
+    Switches (pause or continue) timer
+
+    @param -
+    @return -
+*/
 void TimerWindow::on_pause_continue_timer_clicked()
 {
     ElementTimer* element=timers[ui->list_of_timers->currentRow()];
@@ -146,6 +179,12 @@ void TimerWindow::on_pause_continue_timer_clicked()
     }
 }
 
+/*
+    Delete timer from the list of timers
+
+    @param -
+    @return -
+*/
 void TimerWindow::on_delete_timer_clicked()
 {
     int current_row=ui->list_of_timers->currentRow();

@@ -1,6 +1,15 @@
 #ifndef ELEMENT_TIMER_H
 #define ELEMENT_TIMER_H
 
+/*
+    K-28
+    element_alarm.h
+    Purpose: description class ElementTimer
+    @author Mariia Kushnirenko
+    @version 1.1 20/11/18
+*/
+
+
 #include <QDialog>
 #include <QTime>
 #include <QTimer>
@@ -23,8 +32,9 @@ public:
 
 signals:
     void return_element_timer(ElementTimer *el);
+
 private slots:
-    void on_return_time_clicked();
+    void on_set_timer_time_clicked();
     void stop_timer();
 
 private:

@@ -18,7 +18,7 @@ Ring::Ring(QWidget *parent) :
     QString path = QDir::currentPath();
 
     path=path.left(path.lastIndexOf(QChar('/')));
-    path+="/Lab2/files/sound1.mp3";
+    path+="/Lab2/files/Rington.mp3";
     qDebug()<<path;
     player.setMedia(QUrl(path));
 }

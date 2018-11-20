@@ -32,7 +32,7 @@ signals:
     void return_element_alarm(ElementAlarm *el);
 
 private slots:
-    void on_return_time_clicked();
+    void on_set_time_alarm_clicked();
 
 
 

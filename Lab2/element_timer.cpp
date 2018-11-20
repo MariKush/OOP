@@ -1,3 +1,13 @@
+/*
+    K-28
+    element_alarm.cpp
+    Purpose: implementation of class ElementTimer functions
+    @author Mariia Kushnirenko
+    @version 1.1 20/11/18
+*/
+
+
+
 #include "element_timer.h"
 #include "ui_element_timer.h"
 
@@ -17,7 +27,13 @@ ElementTimer::~ElementTimer()
     delete ui;
 }
 
-void ElementTimer::on_return_time_clicked()
+/*
+    Setting timer time
+
+    @param -
+    @return -
+*/
+void ElementTimer::on_set_timer_time_clicked()
 {
     time=ui->timeEdit->time();
     emit return_element_timer(this);
@@ -26,6 +42,12 @@ void ElementTimer::on_return_time_clicked()
     connect(timer, SIGNAL(timeout()), this,SLOT(stop_timer()));
 }
 
+/*
+    Stop timer
+
+    @param -
+    @return -
+*/
 void ElementTimer::stop_timer()
 {
     this->timer->stop();
