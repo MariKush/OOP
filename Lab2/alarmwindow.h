@@ -28,27 +28,18 @@ signals:
 
 private slots:
     void on_add_new_alarm_clicked();
-    void push(ElementAlarm *);
+    void push_alarm(ElementAlarm *);
     void output_list_of_alarm();
     void check_alarms();
-    void output_correct_buttons_name();
+    void output_correct_alarm_buttons_name();
     void on_start_stop_alarm_clicked();
-    void on_delete_timer_clicked();
+    void on_delete_alarm_clicked();
 
 private:
     Ui::AlarmWindow *ui;
     QVector<ElementAlarm*> alarms;
-};
 
-inline QString time_to(QTime time)
-{
-    QTime tmp;
-    tmp.setHMS(0,0,0);
-    int secto=QTime::currentTime().secsTo(time);
-    tmp=tmp.addSecs(secto);
-    QChar s=':';
-    if (secto%2==1)s=' ';
-    return tmp.toString("h")+s+tmp.toString("mm")+s+tmp.toString("ss");
-}
+    QString time_to(QTime time);
+};
 
 #endif // ALARMWINDOW_H

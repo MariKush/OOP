@@ -12,15 +12,6 @@
 #include <QTimer>
 #include <QColor>
 
-/*
-    Calculating time to a given time point
-
-    @param QTime time
-    @return string in the form h:mm:ss
-*/
-
-
-
 AlarmWindow::AlarmWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AlarmWindow)
@@ -29,7 +20,6 @@ AlarmWindow::AlarmWindow(QWidget *parent) :
     QTimer *timer=new QTimer;
     connect(timer, SIGNAL(timeout()), this, SLOT(output_list_of_alarm()));
     timer->start(10);
-
 }
 
 AlarmWindow::~AlarmWindow()
@@ -37,18 +27,55 @@ AlarmWindow::~AlarmWindow()
     delete ui;
 }
 
+/*
+    Add new alarm after clicked
+
+    @param -
+    @return -
+*/
 void AlarmWindow::on_add_new_alarm_clicked()
 {
     ElementAlarm *el_al=new ElementAlarm;
     el_al->show();
-    connect(el_al, SIGNAL(return_element_alarm(ElementAlarm *)), this, SLOT(push(ElementAlarm*)));
+    connect(el_al, SIGNAL(return_element_alarm(ElementAlarm *)), this, SLOT(push_alarm(ElementAlarm*)));
 }
 
-void AlarmWindow::push(ElementAlarm * el)
+/*
+    Insert alarm clock into list of alarms
+
+    @param ElementAlarm * el
+    @return -
+*/
+void AlarmWindow::push_alarm(ElementAlarm * el)
 {
     alarms.push_back(el);
 }
 
+/*
+    In the form of a string returns (with flashing ":")
+    the difference between current time and given time
+
+    @param QTime time (given time)
+    @return QString in the form h:mm:ss (time to given time)
+*/
+QString AlarmWindow::time_to(QTime time)
+{
+    QTime tmp;
+    tmp.setHMS(0,0,0);
+    int secto=QTime::currentTime().secsTo(time);
+    tmp=tmp.addSecs(secto);
+    QChar s=':';
+    if (secto%2==1)s=' ';
+    return tmp.toString("h")+s+tmp.toString("mm")+s+tmp.toString("ss");
+}
+
+
+/*
+    Output list of alarm
+
+    @param -
+    @return -
+*/
 void AlarmWindow::output_list_of_alarm()
 {
     int current_row=ui->list_of_alarms->currentRow();
@@ -66,15 +93,21 @@ void AlarmWindow::output_list_of_alarm()
     }
     ui->list_of_alarms->setCurrentRow(current_row);
     check_alarms();
-    output_correct_buttons_name();
+    output_correct_alarm_buttons_name();
 }
 
-void AlarmWindow::output_correct_buttons_name()
+/*
+    Output correct buttons name
+
+    @param -
+    @return -
+*/
+void AlarmWindow::output_correct_alarm_buttons_name()
 {
     int current_row=-1;
     current_row=ui->list_of_alarms->currentRow();
 
-    //start/stop
+    //button start/stop current
     {
         if (current_row==-1)
         {
@@ -83,19 +116,27 @@ void AlarmWindow::output_correct_buttons_name()
         else
         {
             ui->start_stop_alarm->setHidden(false);
-            if(alarms[current_row]->is_turn)ui->start_stop_alarm->setText("Stop");
-            else ui->start_stop_alarm->setText("Start");
+            if(alarms[current_row]->is_turn)ui->start_stop_alarm->setText("stop");
+            else ui->start_stop_alarm->setText("start");
         }
     }
 
-    //delete current
+    //button delete current
     {
-        if (current_row==-1) ui->delete_timer->setHidden(true);
-        else ui->delete_timer->setHidden(false);
+        if (current_row==-1) ui->delete_alarm->setHidden(true);
+        else ui->delete_alarm->setHidden(false);
     }
 
 }
 
+/*
+    Checks whether it is necessary to make a call,
+    if necessary, calls the calling function alarm_ring()
+    and turns off the alarm clock
+
+    @param -
+    @return -
+*/
 void AlarmWindow::check_alarms()
 {
     int size_list_of_alrms=alarms.size();
@@ -113,12 +154,27 @@ void AlarmWindow::check_alarms()
     }
 }
 
+/*
+    Switches (turns on or off) the alarm clock
+
+    @param -
+    @return -
+*/
 void AlarmWindow::on_start_stop_alarm_clicked()
 {
-    alarms[ui->list_of_alarms->currentRow()]->is_turn-=1;
+    if(alarms[ui->list_of_alarms->currentRow()]->is_turn)
+        alarms[ui->list_of_alarms->currentRow()]->is_turn = false;
+    else
+        alarms[ui->list_of_alarms->currentRow()]->is_turn = true;
 }
 
-void AlarmWindow::on_delete_timer_clicked()
+/*
+    Delete alarm from the list of alarm clocks
+
+    @param -
+    @return -
+*/
+void AlarmWindow::on_delete_alarm_clicked()
 {
     alarms.erase(alarms.begin()+ui->list_of_alarms->currentRow());
 }

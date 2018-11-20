@@ -24,22 +24,15 @@ TimerWindow::~TimerWindow()
     delete ui;
 }
 
-QString fromqtimer(QTimer *timer)
-{
-    QTime tmp=QTime::currentTime();
-    tmp=tmp.addMSecs(timer->remainingTime());
-    return time_to(tmp);
-
-}
 
 void TimerWindow::on_add_new_clicked()
 {
     ElementTimer *el_ti=new ElementTimer;
     el_ti->show();
-    connect(el_ti,SIGNAL(return_element_timer(ElementTimer *)), this, SLOT(push(ElementTimer *)));
+    connect(el_ti,SIGNAL(return_element_timer(ElementTimer *)), this, SLOT(push_timer(ElementTimer *)));
 }
 
-void TimerWindow::push(ElementTimer *el)
+void TimerWindow::push_timer(ElementTimer *el)
 {
     timers.push_back(el);
     connect(el->timer, SIGNAL(timeout()), this, SLOT(check()));

@@ -6,7 +6,7 @@
     timerwindow.h
     Purpose: description class TimerWindow
     @author Mariia Kushnirenko
-    @version 1.1 17/11/18
+    @version 1.1 20/11/18
 */
 
 #include "alarmwindow.h"
@@ -28,15 +28,12 @@ signals:
 
 private slots:
     void on_add_new_clicked();
-    void push(ElementTimer *el);
+    void push_timer(ElementTimer *el);
     void output_correct_buttons_name();
     void output_list_of_timers();
     void check();
-
     void on_start_stop_timer_clicked();
-
     void on_pause_continue_timer_clicked();
-
     void on_delete_timer_clicked();
 
 private:
