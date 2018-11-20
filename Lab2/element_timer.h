@@ -17,7 +17,10 @@ public:
     explicit ElementTimer(QWidget *parent = nullptr);
     ~ElementTimer();
     QTime time;
+    QTime tmp_pause;//for pause
     QTimer *timer;
+    bool pause=false;
+
 signals:
     void return_element_timer(ElementTimer *el);
 private slots:

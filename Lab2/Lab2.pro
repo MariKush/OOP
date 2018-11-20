@@ -32,7 +32,8 @@ SOURCES += \
     ring.cpp \
     element_alarm.cpp \
     element_timer.cpp \
-    element_timer.cpp
+    element_timer.cpp \
+    notdisturb.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +42,8 @@ HEADERS += \
     ring.h \
     element_alarm.h \
     element_timer.h \
-    element_timer.h
+    element_timer.h \
+    notdisturb.h
 
 FORMS += \
         mainwindow.ui \
@@ -50,7 +52,8 @@ FORMS += \
     element_alarm.ui \
     ring.ui \
     element_timer.ui \
-    element_timer.ui
+    element_timer.ui \
+    notdisturb.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

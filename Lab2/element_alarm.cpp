@@ -26,6 +26,7 @@ ElementAlarm::~ElementAlarm()
 void ElementAlarm::on_return_time_clicked()
 {
     time=ui->timeEdit->time();
+    time.setHMS(time.hour(), time.minute(),0);
     this->close();
     is_turn=true;
     emit return_element_alarm(this);

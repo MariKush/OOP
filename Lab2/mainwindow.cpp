@@ -38,5 +38,16 @@ void MainWindow::on_gotoAlarm_clicked()
 
 void MainWindow::call_ring()
 {
-    general_ring.call();
+    if (not_disturb_MW.can_call())
+        general_ring.call();
+}
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    not_disturb_MW.not_disturb = !not_disturb_MW.not_disturb;
+}
+
+void MainWindow::on_not_disturb_setting_clicked()
+{
+    not_disturb_MW.show();
 }

@@ -7,10 +7,13 @@ ElementTimer::ElementTimer(QWidget *parent) :
 {
     ui->setupUi(this);
     timer= new QTimer;
+    tmp_pause.setHMS(0,0,0);
 }
 
 ElementTimer::~ElementTimer()
 {
+    timer->stop();
+    delete timer;
     delete ui;
 }
 

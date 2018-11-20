@@ -14,6 +14,7 @@
 #include "timerwindow.h"
 #include "alarmwindow.h"
 #include "ring.h"
+#include "notdisturb.h"
 namespace Ui {
 class MainWindow;
 }
@@ -33,11 +34,17 @@ private slots:
 
     void call_ring();
 
+    void on_checkBox_stateChanged(int arg1);
+
+    void on_not_disturb_setting_clicked();
+
 private:
     Ui::MainWindow *ui;
     TimerWindow *timers=new TimerWindow;
     AlarmWindow *alarms=new AlarmWindow;
     Ring general_ring;
+    NotDisturb not_disturb_MW;
+
 };
 
 #endif // MAINWINDOW_H

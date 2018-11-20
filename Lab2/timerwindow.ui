@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>179</height>
+    <width>319</width>
+    <height>234</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,14 +26,53 @@
   <widget class="QPushButton" name="add_new">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>30</x>
      <y>160</y>
-     <width>80</width>
-     <height>16</height>
+     <width>81</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>ADD new</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="start_stop_timer">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>160</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>start_stop</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pause_continue_timer">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>pause</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="delete_timer">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>200</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>delete</string>
    </property>
   </widget>
  </widget>

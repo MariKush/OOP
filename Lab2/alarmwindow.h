@@ -42,7 +42,8 @@ private:
 
 inline QString time_to(QTime time)
 {
-    QTime tmp(0,0);
+    QTime tmp;
+    tmp.setHMS(0,0,0);
     int secto=QTime::currentTime().secsTo(time);
     tmp=tmp.addSecs(secto);
     QChar s=':';
