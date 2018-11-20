@@ -13,68 +13,84 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QListWidget" name="list_of_timers">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>10</y>
-     <width>181</width>
-     <height>141</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="add_new">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>160</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ADD new</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="start_stop_timer">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>160</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>start_stop</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pause_continue_timer">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>200</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>pause</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="delete_timer">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>200</y>
-     <width>81</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>delete</string>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Click on the timer to delete, pause or continue, start or stop</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QListWidget" name="list_of_timers"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="add_new">
+       <property name="text">
+        <string>add new</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="delete_timer">
+       <property name="text">
+        <string>delete</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pause_continue_timer">
+       <property name="text">
+        <string>pause_continue</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="start_stop_timer">
+       <property name="text">
+        <string>start_stop</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
