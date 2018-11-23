@@ -17,6 +17,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(alarms, SIGNAL(alarm_ring()),this, SLOT(call_ring()));
     connect(timers, SIGNAL(timer_ring()),this, SLOT(call_ring()));
+    QString path = QDir::currentPath();
+
+    path=path.left(path.lastIndexOf(QChar('/')));
+    path+="/Lab2/files";
+    general_ring.FileDialog.setDirectory(path);
 }
 
 MainWindow::~MainWindow()
@@ -77,4 +82,9 @@ void MainWindow::on_checkBox_stateChanged()
 void MainWindow::on_not_disturb_setting_clicked()
 {
     not_disturb_MW.show();
+}
+
+void MainWindow::on_SetMusic_clicked()
+{
+    general_ring.player.setMedia(QUrl(general_ring.FileDialog.getOpenFileName(this,tr("Chose music"),"" , "*.mp3")));
 }

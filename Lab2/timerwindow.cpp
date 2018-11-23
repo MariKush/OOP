@@ -116,7 +116,9 @@ void TimerWindow::output_list_of_timers()
     for(int i=0;i<size_of_list;i++)
     {
         QString s;
-        s = timers[i]->time.toString("h:mm:ss");
+        s=QString::number(i+1)+")\t";
+        s=s+timers[i]->name;
+        s = s+timers[i]->time.toString("\th:mm:ss");
         if(timers[i]->timer->isActive()||timers[i]->pause)
         {
             if (!timers[i]->pause)

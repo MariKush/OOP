@@ -13,6 +13,9 @@
 #include<QDateTime>
 #include <QDialog>
 #include <QDebug>
+
+static int current_index_alarm=1;
+
 namespace Ui {
 class ElementAlarm;
 }
@@ -25,7 +28,7 @@ public:
     Ui::ElementAlarm *ui;
     explicit ElementAlarm(QWidget *parent = nullptr);
     ~ElementAlarm();
-
+    QString name;
     QTime time;
     bool is_turn = false;
 signals:

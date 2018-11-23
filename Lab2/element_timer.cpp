@@ -18,6 +18,7 @@ ElementTimer::ElementTimer(QWidget *parent) :
     ui->setupUi(this);
     timer= new QTimer;
     tmp_pause.setHMS(0,0,0);
+    ui->NameEdit->setMaxLength(8);
 }
 
 ElementTimer::~ElementTimer()
@@ -35,6 +36,13 @@ ElementTimer::~ElementTimer()
 */
 void ElementTimer::on_set_timer_time_clicked()
 {
+    if (ui->NameEdit->text().isEmpty())
+    {
+        name="Timer"+QString::number(current_index_timer);
+    }
+    else
+        name=ui->NameEdit->text();
+    current_index_timer++;
     time=ui->timeEdit->time();
     emit return_element_timer(this);
     this->close();

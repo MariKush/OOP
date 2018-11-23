@@ -34,12 +34,15 @@ private slots:
     void on_checkBox_stateChanged();
     void on_not_disturb_setting_clicked();
 
+    void on_SetMusic_clicked();
+
 private:
     Ui::MainWindow *ui;
     TimerWindow *timers=new TimerWindow;
     AlarmWindow *alarms=new AlarmWindow;
     Ring general_ring;
     NotDisturb not_disturb_MW;
+
 
 };
 

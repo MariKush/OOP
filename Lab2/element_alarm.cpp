@@ -10,12 +10,14 @@
 #include "element_alarm.h"
 #include "ui_element_alarm.h"
 
+
 ElementAlarm::ElementAlarm(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ElementAlarm)
 {
     ui->setupUi(this);
     ui->timeEdit->setTime(QTime::currentTime());
+    ui->NameEdit->setMaxLength(8);
 }
 
 ElementAlarm::~ElementAlarm()
@@ -35,6 +37,13 @@ void ElementAlarm::on_set_time_alarm_clicked()
     time.setHMS(time.hour(), time.minute(),0);
     this->close();
     is_turn=true;
+    if(ui->NameEdit->text().isEmpty())
+    {
+        name="Alarm"+QString::number(current_index_alarm);
+    }
+    else
+        name=ui->NameEdit->text();
+    current_index_alarm++;
     emit return_element_alarm(this);
 }
 

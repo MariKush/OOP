@@ -19,7 +19,9 @@ AlarmWindow::AlarmWindow(QWidget *parent) :
     ui->setupUi(this);
     QTimer *timer=new QTimer;
     connect(timer, SIGNAL(timeout()), this, SLOT(output_list_of_alarm()));
+    connect(ui->FiltrBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed_current_row_in_FiltrBox(int)));
     timer->start(10);
+    ui->LineEditForSubname->setHidden(true);
 }
 
 AlarmWindow::~AlarmWindow()
@@ -51,6 +53,27 @@ void AlarmWindow::push_alarm(ElementAlarm * el)
     alarms.push_back(el);
 }
 
+void AlarmWindow::changed_current_row_in_FiltrBox(int cur)
+{
+    switch (cur) {
+    case 0:
+    {
+        ui->LineEditForSubname->setHidden(true);
+        break;
+    }
+    case 1://search substring
+    {
+        ui->LineEditForSubname->setHidden(false);
+        break;
+    }
+    case 2:
+    {
+        ui->LineEditForSubname->setHidden(true);
+        break;
+    }
+    }
+}
+
 /*
     In the form of a string returns (with flashing ":")
     the difference between current time and given time
@@ -70,6 +93,15 @@ QString AlarmWindow::time_to(QTime time)
 }
 
 
+QString for_write(ElementAlarm *el, int i)
+{
+    QString s=QString::number(i+1)+") ";
+    s=s+el->name;
+    s=s+el->time.toString(" h:mm ");
+    if (el->is_turn) s=s+AlarmWindow::time_to(el->time);
+    return s;
+}
+
 /*
     Output list of alarms
 
@@ -81,16 +113,47 @@ void AlarmWindow::output_list_of_alarm()
     int current_row=ui->list_of_alarms->currentRow();
     ui->list_of_alarms->clear();
     int size_list_of_alarms=alarms.size();
-    for (int i=0;i<size_list_of_alarms;i++)
+    switch (ui->FiltrBox->currentIndex()) {
+    case 0://ALL
     {
-        QString s;
-        s=alarms[i]->time.toString("h:mm ");
-        if (alarms[i]->is_turn) s=s+time_to(alarms[i]->time);
-
-        ui->list_of_alarms->addItem(s);
-        if(!alarms[i]->is_turn)
-            ui->list_of_alarms->item(i)->setForeground(Qt::red);
+        if (Complement) break;
+        for (int i=0;i<size_list_of_alarms;i++)
+        {
+            ui->list_of_alarms->addItem(for_write(alarms[i], i));
+            if(!alarms[i]->is_turn)
+                ui->list_of_alarms->item(i)->setForeground(Qt::red);
+        }
+        break;
     }
+    case 1:
+    {
+        int count=0;
+        QString st=ui->LineEditForSubname->text();
+        for (int i=0;i<size_list_of_alarms;i++)
+        {
+            if (!(alarms[i]->name.contains(st,Qt::CaseInsensitive)^Complement))continue;
+            ui->list_of_alarms->addItem(for_write(alarms[i], i));
+            if(!alarms[i]->is_turn)
+                ui->list_of_alarms->item(count)->setForeground(Qt::red);
+            count++;
+        }
+        break;
+    }
+    case 2:
+    {
+        int count=0;
+        for (int i=0;i<size_list_of_alarms;i++)
+        {
+            if(!(alarms[i]->is_turn^Complement))continue;
+            ui->list_of_alarms->addItem(for_write(alarms[i], i));
+            if(!alarms[i]->is_turn)
+                ui->list_of_alarms->item(count)->setForeground(Qt::red);
+            count++;
+        }
+        break;
+    }
+    }
+
     ui->list_of_alarms->setCurrentRow(current_row);
     check_alarms();
     output_correct_alarm_buttons_name();
@@ -177,4 +240,9 @@ void AlarmWindow::on_start_stop_alarm_clicked()
 void AlarmWindow::on_delete_alarm_clicked()
 {
     alarms.erase(alarms.begin()+ui->list_of_alarms->currentRow());
+}
+
+void AlarmWindow::on_ComplementBox_stateChanged(int )
+{
+    Complement=!Complement;
 }

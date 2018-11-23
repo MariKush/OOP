@@ -14,6 +14,8 @@
 #include <QTime>
 #include <QTimer>
 
+static int current_index_timer=1;
+
 namespace Ui {
 class ElementTimer;
 }
@@ -28,6 +30,7 @@ public:
     QTime time;
     QTime tmp_pause;//for pause
     QTimer *timer;
+    QString name;
     bool pause=false;
 
 signals:

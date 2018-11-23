@@ -13,6 +13,7 @@
 #include <QDialog>
 #include <QMediaPlayer>
 #include <QDir>
+#include <QFileDialog>
 
 namespace Ui {
 class ring;
@@ -25,10 +26,14 @@ class Ring : public QDialog
 public:
     explicit Ring(QWidget *parent = nullptr);
     ~Ring();
+
+    QMediaPlayer player;
+    QFileDialog FileDialog;
+
     void call();
     void closeEvent(QCloseEvent *event);
 private:
-    QMediaPlayer player;
+
     Ui::ring *ui;
 };
 
