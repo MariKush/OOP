@@ -93,6 +93,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="not_disturb_setting">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="text">
          <string>set time period</string>
         </property>
@@ -102,8 +108,14 @@
     </item>
     <item>
      <widget class="QPushButton" name="SetMusic">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>Сhoose a melody</string>
       </property>
      </widget>
     </item>

@@ -37,7 +37,7 @@ private slots:
     void on_start_stop_alarm_clicked();
     void on_delete_alarm_clicked();
     void changed_current_row_in_FiltrBox(int);
-    void on_ComplementBox_stateChanged(int arg1);
+    void on_ComplementBox_stateChanged();
 
 private:
     Ui::AlarmWindow *ui;

@@ -53,6 +53,13 @@ void AlarmWindow::push_alarm(ElementAlarm * el)
     alarms.push_back(el);
 }
 
+/*
+    Changed current row in FiltrBox
+    (selects whether to display the input field for subname)
+
+    @param int cur
+    @return -
+*/
 void AlarmWindow::changed_current_row_in_FiltrBox(int cur)
 {
     switch (cur) {
@@ -92,7 +99,13 @@ QString AlarmWindow::time_to(QTime time)
     return tmp.toString("h")+s+tmp.toString("mm")+s+tmp.toString("ss");
 }
 
+/*
+    Information about the item: number, name, time of the call and time to call
 
+    @param ElementAlarm *el - current element,
+           int i - current item number
+    @return QString
+*/
 QString for_write(ElementAlarm *el, int i)
 {
     QString s=QString::number(i+1)+") ";
@@ -103,7 +116,7 @@ QString for_write(ElementAlarm *el, int i)
 }
 
 /*
-    Output list of alarms
+    Output list of alarms (include filtrs)
 
     @param -
     @return -
@@ -242,7 +255,7 @@ void AlarmWindow::on_delete_alarm_clicked()
     alarms.erase(alarms.begin()+ui->list_of_alarms->currentRow());
 }
 
-void AlarmWindow::on_ComplementBox_stateChanged(int )
+void AlarmWindow::on_ComplementBox_stateChanged()
 {
     Complement=!Complement;
 }
