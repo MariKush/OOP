@@ -10,6 +10,7 @@
 #include "element_alarm.h"
 #include "ui_element_alarm.h"
 
+static int current_index_alarm=1;
 
 ElementAlarm::ElementAlarm(QWidget *parent) :
     QDialog(parent),
@@ -18,6 +19,16 @@ ElementAlarm::ElementAlarm(QWidget *parent) :
     ui->setupUi(this);
     ui->timeEdit->setTime(QTime::currentTime());
     ui->NameEdit->setMaxLength(8);
+    QStringList strList;
+    strList<<"Monday"<<"Tuesday"<<"Wednesday"<<"Thursday"<<"Friday"<<"Saturday"<<"Sunday";
+    ui->WeekDay->addItems(strList);
+    QListWidgetItem* item;
+    for(int i = 0; i < 7; ++i)
+    {
+        item = ui->WeekDay->item(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(Qt::Unchecked);
+    }
 }
 
 ElementAlarm::~ElementAlarm()
@@ -44,6 +55,10 @@ void ElementAlarm::on_set_time_alarm_clicked()
     else
         name=ui->NameEdit->text();
     current_index_alarm++;
+    for (int i = 0; i < 7; ++i)
+    {
+        WeekDay[i]=ui->WeekDay->item(i)->checkState();
+    }
     emit return_element_alarm(this);
 }
 

@@ -36,6 +36,10 @@ private slots:
     void on_pause_continue_timer_clicked();
     void on_delete_timer_clicked();
 
+    void on_AddRepeatCount_clicked();
+
+    void on_SubstructRepeatCount_clicked();
+
 private:
     Ui::TimerWindow *ui;
     QVector<ElementTimer*> timers;

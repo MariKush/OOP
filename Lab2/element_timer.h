@@ -32,6 +32,7 @@ public:
     QTimer *timer;
     QString name;
     bool pause=false;
+    int TimesToRepeat;
 
 signals:
     void return_element_timer(ElementTimer *el);

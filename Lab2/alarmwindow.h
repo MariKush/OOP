@@ -12,6 +12,7 @@
 #include <QDialog>
 #include "element_alarm.h"
 
+
 namespace Ui {
 class AlarmWindow;
 }
@@ -23,7 +24,7 @@ class AlarmWindow : public QDialog
 public:
     explicit AlarmWindow(QWidget *parent = nullptr);
     ~AlarmWindow();
-    static QString time_to(QTime time);
+    static QString time_to(QDateTime time);
 signals:
     void alarm_ring();
 
@@ -38,12 +39,13 @@ private slots:
     void on_delete_alarm_clicked();
     void changed_current_row_in_FiltrBox(int);
     void on_ComplementBox_stateChanged();
-
+    void output_list_of_weekday();
+    void changed_weekday(QListWidgetItem*);
 private:
     Ui::AlarmWindow *ui;
     QVector<ElementAlarm*> alarms;
     bool Complement=false;
-
+    bool flag=false;
 };
 
 #endif // ALARMWINDOW_H

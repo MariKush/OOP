@@ -43,7 +43,6 @@ private:
     Ring general_ring;
     NotDisturb not_disturb_MW;
 
-
 };
 
 #endif // MAINWINDOW_H

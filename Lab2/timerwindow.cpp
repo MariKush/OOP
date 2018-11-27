@@ -99,6 +99,34 @@ void TimerWindow::output_correct_timer_buttons_name()
             else ui->pause_continue_timer->setText("continue");
         }
     }
+
+    //+/- buttons
+    {
+        if (current_row==-1)
+        {
+            ui->AddRepeatCount->setHidden(true);
+            ui->SubstructRepeatCount->setHidden(true);
+        }
+        else
+        {
+            if(timers[current_row]->TimesToRepeat==0)
+            {
+                ui->AddRepeatCount->setHidden(false);
+                ui->SubstructRepeatCount->setHidden(true);
+            }
+            else if(timers[current_row]->TimesToRepeat==99)
+            {
+                ui->AddRepeatCount->setHidden(true);
+                ui->SubstructRepeatCount->setHidden(false);
+            }
+            else
+            {
+                ui->AddRepeatCount->setHidden(false);
+                ui->SubstructRepeatCount->setHidden(false);
+            }
+        }
+    }
+
 }
 
 /*
@@ -128,8 +156,9 @@ void TimerWindow::output_list_of_timers()
                 s=s+" "+t.toString("h:mm:ss:zzz");
             }
             else
-                s=s+" "+timers[i]->tmp_pause.toString("h:mm:ss:zzz");
+                s=s+" "+timers[i]->tmp_pause.toString("h:mm:ss:zzz ");
         }
+        s=s+" TimestToRepeat "+QString::number(timers[i]->TimesToRepeat);
         ui->list_of_timers->addItem(s);
         if(!timers[i]->timer->isActive()&&!timers[i]->pause)
             ui->list_of_timers->item(i)->setForeground(Qt::red);
@@ -154,6 +183,7 @@ void TimerWindow::on_start_stop_timer_clicked()
     }
     else//start
     {
+        if (timers[current_row]->TimesToRepeat==0)on_AddRepeatCount_clicked();
         timers[current_row]->timer->start(timers[current_row]->time.msecsSinceStartOfDay());
     }
 }
@@ -192,4 +222,23 @@ void TimerWindow::on_delete_timer_clicked()
     int current_row=ui->list_of_timers->currentRow();
     timers[current_row]->~ElementTimer();
     timers.erase(timers.begin()+current_row);
+}
+
+void TimerWindow::on_AddRepeatCount_clicked()
+{
+    int current_row=ui->list_of_timers->currentRow();
+    timers[current_row]->TimesToRepeat++;
+}
+
+void TimerWindow::on_SubstructRepeatCount_clicked()
+{
+    int current_row=ui->list_of_timers->currentRow();
+    timers[current_row]->TimesToRepeat--;
+    if (timers[current_row]->TimesToRepeat==0)//stop
+    {
+        timers[current_row]->pause=false;
+        timers[current_row]->tmp_pause.setHMS(0,0,0);
+        timers[current_row]->timer->stop();
+    }
+
 }

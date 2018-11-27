@@ -12,6 +12,7 @@
 #include <QTimer>
 #include <QColor>
 
+
 AlarmWindow::AlarmWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AlarmWindow)
@@ -22,11 +23,42 @@ AlarmWindow::AlarmWindow(QWidget *parent) :
     connect(ui->FiltrBox, SIGNAL(currentIndexChanged(int)), this, SLOT(changed_current_row_in_FiltrBox(int)));
     timer->start(10);
     ui->LineEditForSubname->setHidden(true);
+    QStringList strList;
+    strList<<"Monday"<<"Tuesday"<<"Wednesday"<<"Thursday"<<"Friday"<<"Saturday"<<"Sunday";
+    ui->weekday->addItems(strList);
+    QListWidgetItem* item;
+    for(int i = 0; i < 7; ++i)
+    {
+        item = ui->weekday->item(i);
+        item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+        item->setCheckState(Qt::Unchecked);
+    }
+    connect(ui->list_of_alarms, SIGNAL(itemSelectionChanged()), this, SLOT(output_list_of_weekday()));
+    connect(ui->weekday, SIGNAL(itemChanged(QListWidgetItem*)),
+                     this, SLOT(changed_weekday(QListWidgetItem*)));
 }
 
 AlarmWindow::~AlarmWindow()
 {
     delete ui;
+}
+
+void AlarmWindow::changed_weekday(QListWidgetItem* item)
+{
+    if (flag) return;
+    qDebug()<<3;
+    QStringList strList;
+    strList<<"Monday"<<"Tuesday"<<"Wednesday"<<"Thursday"<<"Friday"<<"Saturday"<<"Sunday";
+    for (int i=0;i<7;i++)
+    {
+        if (item->text()==strList[i])
+        {
+            alarms[ui->list_of_alarms->currentRow()]->WeekDay[i]=!alarms[ui->list_of_alarms->currentRow()]->WeekDay[i];
+            output_list_of_weekday();
+            return;
+        }
+    }
+
 }
 
 /*
@@ -88,15 +120,17 @@ void AlarmWindow::changed_current_row_in_FiltrBox(int cur)
     @param QTime time (given time)
     @return QString in the form h:mm:ss (time to given time)
 */
-QString AlarmWindow::time_to(QTime time)
+QString AlarmWindow::time_to(QDateTime time)
 {
+    /*I used QTime for return QString becouse
+     * QDateTime begin for 2:02:00:00 (d:hh:mm:ss)
+     */
+    int secto=QDateTime::currentDateTime().secsTo(time);
+
     QTime tmp;
     tmp.setHMS(0,0,0);
-    int secto=QTime::currentTime().secsTo(time);
-    tmp=tmp.addSecs(secto);
-    QChar s=':';
-    if (secto%2==1)s=' ';
-    return tmp.toString("h")+s+tmp.toString("mm")+s+tmp.toString("ss");
+    tmp=tmp.addSecs(secto%86400);
+    return QString::number(secto/86400)+':'+tmp.toString("hh:mm:ss");
 }
 
 /*
@@ -108,10 +142,59 @@ QString AlarmWindow::time_to(QTime time)
 */
 QString for_write(ElementAlarm *el, int i)
 {
-    QString s=QString::number(i+1)+") ";
+    QString s=QString::number(i+1)+")\t";
     s=s+el->name;
-    s=s+el->time.toString(" h:mm ");
-    if (el->is_turn) s=s+AlarmWindow::time_to(el->time);
+    s=s+el->time.toString("\th:mm ");
+    QDateTime moment;
+    moment.setTime(el->time);
+    QDate date=QDate::currentDate();
+    if (!el->is_turn) return s;
+    bool b=false;
+    for (int i = 0; i < 7; ++i)
+        if (el->WeekDay[i]) b=true;
+    if (b)
+    {
+        //for today
+        if (el->WeekDay[date.dayOfWeek()-1])
+        {
+            if (QTime::currentTime()<moment.time())
+            {
+                moment.setDate(date);
+                s=s+AlarmWindow::time_to(moment);
+                return s;
+            }
+        }
+
+        //for another daye
+        {
+            date=date.addDays(1);//date++
+            while (!el->WeekDay[date.dayOfWeek()-1])
+            {
+                date=date.addDays(1);//date++
+            }
+            qDebug()<<date;
+            moment.setDate(date);
+            s=s+AlarmWindow::time_to(moment);
+            return s;
+
+        }
+    }
+    else
+    {
+        if (QTime::currentTime()<moment.time())
+        {
+            moment.setDate(date);
+            s=s+AlarmWindow::time_to(moment);
+            return s;
+        }
+        else
+        {
+            moment.setDate(date.addDays(1));
+            s=s+AlarmWindow::time_to(moment);
+            return s;
+        }
+    }
+    s=s+AlarmWindow::time_to(moment);
     return s;
 }
 
@@ -170,6 +253,23 @@ void AlarmWindow::output_list_of_alarm()
     ui->list_of_alarms->setCurrentRow(current_row);
     check_alarms();
     output_correct_alarm_buttons_name();
+
+}
+
+void AlarmWindow::output_list_of_weekday()
+{
+    flag=true;
+    int current_row=-1;
+    current_row=ui->list_of_alarms->currentRow();
+    if (current_row==-1)return;
+    for(int i = 0; i < 7; ++i)
+    {
+        if (alarms[current_row]->WeekDay[i])
+            ui->weekday->item(i)->setCheckState(Qt::Checked);
+        else
+            ui->weekday->item(i)->setCheckState(Qt::Unchecked);
+    }
+    flag=false;
 }
 
 /*
@@ -203,6 +303,17 @@ void AlarmWindow::output_correct_alarm_buttons_name()
         else ui->delete_alarm->setHidden(false);
     }
 
+    //
+    {
+        if (current_row==-1)
+        {
+            ui->weekday->setHidden(true);
+        }
+        else
+        {
+            ui->weekday->setHidden(false);
+        }
+    }
 }
 
 /*
@@ -220,7 +331,8 @@ void AlarmWindow::check_alarms()
     {
         if (alarms[i]->is_turn)
         {
-            if (alarms[i]->time.hour()==QTime::currentTime().hour()&&
+            if (alarms[i]->WeekDay[QDate::currentDate().dayOfWeek()-1]&&
+                alarms[i]->time.hour()==QTime::currentTime().hour()&&
                 alarms[i]->time.minute()==QTime::currentTime().minute())
             {
                 emit alarm_ring();
@@ -255,6 +367,11 @@ void AlarmWindow::on_delete_alarm_clicked()
     alarms.erase(alarms.begin()+ui->list_of_alarms->currentRow());
 }
 
+/*
+    When you click on the ComplementBox, change status Complement
+    @param -
+    @return -
+*/
 void AlarmWindow::on_ComplementBox_stateChanged()
 {
     Complement=!Complement;

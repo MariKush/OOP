@@ -19,6 +19,8 @@ ElementTimer::ElementTimer(QWidget *parent) :
     timer= new QTimer;
     tmp_pause.setHMS(0,0,0);
     ui->NameEdit->setMaxLength(8);
+    ui->TimesToRepeat->setValue(1);
+    ui->NameEdit->setText( "Timer"+QString::number(current_index_timer));
 }
 
 ElementTimer::~ElementTimer()
@@ -41,13 +43,17 @@ void ElementTimer::on_set_timer_time_clicked()
         name="Timer"+QString::number(current_index_timer);
     }
     else
+    {
         name=ui->NameEdit->text();
+    }
     current_index_timer++;
     time=ui->timeEdit->time();
+    TimesToRepeat=ui->TimesToRepeat->value();
     emit return_element_timer(this);
     this->close();
-    timer->start(time.msecsSinceStartOfDay());
     connect(timer, SIGNAL(timeout()), this,SLOT(stop_timer()));
+    if (TimesToRepeat>0)
+        timer->start(time.msecsSinceStartOfDay());
 }
 
 /*
@@ -58,5 +64,10 @@ void ElementTimer::on_set_timer_time_clicked()
 */
 void ElementTimer::stop_timer()
 {
-    this->timer->stop();
+    TimesToRepeat--;
+    if (TimesToRepeat==0)
+    {
+        this->timer->stop();
+    }
+
 }

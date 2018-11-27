@@ -13,8 +13,8 @@
 #include<QDateTime>
 #include <QDialog>
 #include <QDebug>
+#include <QListWidgetItem>
 
-static int current_index_alarm=1;
 
 namespace Ui {
 class ElementAlarm;
@@ -31,13 +31,12 @@ public:
     QString name;
     QTime time;
     bool is_turn = false;
+    bool WeekDay[7]={};
 signals:
     void return_element_alarm(ElementAlarm *el);
 
 private slots:
     void on_set_time_alarm_clicked();
-
-
 
 private:
 
