@@ -106,6 +106,7 @@ void TimerWindow::output_correct_timer_buttons_name()
         {
             ui->AddRepeatCount->setHidden(true);
             ui->SubstructRepeatCount->setHidden(true);
+            ui->label_repeat->setHidden(true);
         }
         else
         {
@@ -113,16 +114,19 @@ void TimerWindow::output_correct_timer_buttons_name()
             {
                 ui->AddRepeatCount->setHidden(false);
                 ui->SubstructRepeatCount->setHidden(true);
+                ui->label_repeat->setHidden(false);
             }
             else if(timers[current_row]->TimesToRepeat==99)
             {
                 ui->AddRepeatCount->setHidden(true);
                 ui->SubstructRepeatCount->setHidden(false);
+                ui->label_repeat->setHidden(false);
             }
             else
             {
                 ui->AddRepeatCount->setHidden(false);
                 ui->SubstructRepeatCount->setHidden(false);
+                ui->label_repeat->setHidden(false);
             }
         }
     }
@@ -224,12 +228,24 @@ void TimerWindow::on_delete_timer_clicked()
     timers.erase(timers.begin()+current_row);
 }
 
+/*
+    Add Repeat Count after clicked
+
+    @param -
+    @return -
+*/
 void TimerWindow::on_AddRepeatCount_clicked()
 {
     int current_row=ui->list_of_timers->currentRow();
     timers[current_row]->TimesToRepeat++;
 }
 
+/*
+    Substruct Repeat Count after clicked
+
+    @param -
+    @return -
+*/
 void TimerWindow::on_SubstructRepeatCount_clicked()
 {
     int current_row=ui->list_of_timers->currentRow();

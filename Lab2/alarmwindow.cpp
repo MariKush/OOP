@@ -43,10 +43,14 @@ AlarmWindow::~AlarmWindow()
     delete ui;
 }
 
+/*
+    When you click on the day of week, change status this day in the list of weekday
+    @param QListWidgetItem* item
+    @return -
+*/
 void AlarmWindow::changed_weekday(QListWidgetItem* item)
 {
     if (flag) return;
-    qDebug()<<3;
     QStringList strList;
     strList<<"Monday"<<"Tuesday"<<"Wednesday"<<"Thursday"<<"Friday"<<"Saturday"<<"Sunday";
     for (int i=0;i<7;i++)
@@ -123,7 +127,7 @@ void AlarmWindow::changed_current_row_in_FiltrBox(int cur)
 QString AlarmWindow::time_to(QDateTime time)
 {
     /*I used QTime for return QString becouse
-     * QDateTime begin for 2:02:00:00 (d:hh:mm:ss)
+     * QDateTime begin for 1:02:00:00 (d:hh:mm:ss)
      */
     int secto=QDateTime::currentDateTime().secsTo(time);
 
@@ -256,6 +260,11 @@ void AlarmWindow::output_list_of_alarm()
 
 }
 
+/*
+    Output list of weekday
+    @param -
+    @return -
+*/
 void AlarmWindow::output_list_of_weekday()
 {
     flag=true;
