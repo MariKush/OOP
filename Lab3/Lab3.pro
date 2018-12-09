@@ -27,17 +27,20 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    qcustomplot.cpp \
-    example1.cpp
+    example1.cpp \
+    example2.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
         mainwindow.h \
-    qcustomplot.h \
-    example1.h
+    example1.h \
+    example2.h \
+    qcustomplot.h
 
 FORMS += \
         mainwindow.ui \
-    example1.ui
+    example1.ui \
+    example2.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
