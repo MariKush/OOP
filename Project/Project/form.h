@@ -14,9 +14,6 @@
 #include <QWidget>
 #include "Game.h"
 class QHBoxLayout;
-class QLabel;
-class QLCDNumber;
-class QSpinBox;
 class QVBoxLayout;
 
 namespace Ui {
