@@ -13,9 +13,8 @@
 #include "ui_mainwindow.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QPushButton>
-#include <QTimer>
 #include <QFileDialog>
+
 
 /*
     Designer class Form
@@ -59,10 +58,12 @@ Form::Form(bool HardMode, QWidget *parent):
     setLayout(layout);
 }
 
+
 Form::~Form()
 {
     delete ui;
 }
+
 
 /*
     Updating the number of moves
@@ -119,6 +120,7 @@ void Form::on_NewGame_clicked()
 
     resize(sizeHint());
 }
+
 
 /*
     Back to the mainwindow

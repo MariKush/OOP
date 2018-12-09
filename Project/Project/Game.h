@@ -34,9 +34,10 @@ private:
     QList<QPushButton*> buttons;
     QList<int> numbers;
     QGridLayout* grid;
-    QPoint path;
-    QPixmap *px[15];
+    QPoint path;//empty cell
+    QPixmap *px[15];//for showing images on screen
     void checkGameOver();
+
 public slots:
     void move();
 };
