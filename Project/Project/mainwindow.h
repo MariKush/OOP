@@ -1,6 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+/*
+    K-28
+    mainwindow.h
+    Purpose: idescription of class MainWindow functions
+    (initial game window)
+    @author Mariia Kushnirenko
+    @version 08/12/18
+*/
+
 #include <QMainWindow>
 
 namespace Ui {

@@ -1,6 +1,16 @@
 #ifndef FORM_H
 #define FORM_H
 
+/*
+    K-28
+    form.h
+    Purpose: idescription of class Form functions
+    (for box with a gaming field)
+    @author Mariia Kushnirenko
+    @version 08/12/18
+*/
+
+
 #include <QWidget>
 #include "Game.h"
 class QHBoxLayout;

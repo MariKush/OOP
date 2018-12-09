@@ -1,3 +1,12 @@
+/*
+    K-28
+    mainwindow.cpp
+    Purpose: implementation of class MainWindow functions
+    (initial game window)
+    @author Mariia Kushnirenko
+    @version 08/1218
+*/
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "QMessageBox"
@@ -19,7 +28,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_exit_clicked()
 {
     QMessageBox::StandardButton reply;
-    reply = QMessageBox::question(this,"Exit", "Do you really want to leave the game?", QMessageBox::Yes | QMessageBox::No);
+    reply = QMessageBox::question(this,"Exit", "Do you really want to leave the game?",
+                                  QMessageBox::Yes | QMessageBox::No);
     if(reply == QMessageBox::Yes){
         close();
     }

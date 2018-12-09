@@ -1,6 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
+/*
+    K-28
+    Game.h
+    Purpose: idescription of class Game functions
+    (logic (brain) game)
+    @author Mariia Kushnirenko
+    @version 08/12/18
+*/
+
+
 #include <QList>
 #include <QWidget>
 class QGridLayout;

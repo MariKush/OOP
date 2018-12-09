@@ -1,3 +1,12 @@
+/*
+    K-28
+    Game.cpp
+    Purpose: implementation of class Game functions
+    (logic (brain) game)
+    @author Mariia Kushnirenko
+    @version 08/1218
+*/
+
 #include "Game.h"
 #include "mainwindow.h"
 #include <QtGlobal>
@@ -8,14 +17,12 @@
 #include "QMessageBox"
 #include <cstdlib>
 #include <QDir>
-#include <QDebug>
 
 void Game::ChangePhoto(QString s)
 {
     for(int i=0;i<15;i++)
     {
         px[i]=new QPixmap(s+QString::number(i+1)+".jpg");
-        qDebug()<<s+QString::number(i+1)+".jpg";
     }
 }
 
@@ -83,7 +90,6 @@ Game::Game(QString s, QWidget*)
 
 void Game::move()
 {
-
     int x, y, rs, cs;
     QPushButton* clickedBtn = static_cast<QPushButton*>(sender());
     grid->getItemPosition(grid->indexOf(clickedBtn), &y, &x, &rs, &cs);

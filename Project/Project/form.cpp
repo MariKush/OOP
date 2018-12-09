@@ -1,3 +1,12 @@
+/*
+    K-28
+    form.cpp
+    Purpose: implementation of class Form functions
+    (for box with a gaming field)
+    @author Mariia Kushnirenko
+    @version 08/1218
+*/
+
 #include "form.h"
 #include "ui_form.h"
 #include "mainwindow.h"
@@ -37,9 +46,15 @@ Form::Form(bool HardMode, QWidget *parent):game(NULL),
     layout->addLayout(settingsLayout);
     on_NewGame_clicked();
 
-    setLayout(layout);
+    this->setMaximumHeight(this->height());
+        this->setMaximumWidth(this->width());
 
-    connect(this->game, SIGNAL(Smove()), this, SLOT(update_count_of_moves()));
+    setLayout(layout);
+}
+
+Form::~Form()
+{
+    delete ui;
 }
 
 void Form::update_count_of_moves()
@@ -47,37 +62,39 @@ void Form::update_count_of_moves()
     ui->countMoves->setText(QString::number(game->countMoves)+" moves");
 }
 
-
-Form::~Form()
-{
-    delete ui;
-}
-
 void Form::on_NewGame_clicked()
 {
     if(game) //delete the old field
-    {
-        layout->removeWidget(game);
-        delete game;
-    }
+        {
+            photoLayout->removeWidget(game);
+            if (!hardMode)
+                photoLayout->removeWidget(ui->originalPhoto);
+            layout->removeWidget(ui->countMoves);
+            layout->removeItem(photoLayout);
 
-    game = new Game(WayTo, this); //draw a new field
-    photoLayout->addWidget(game);
-    if (!hardMode)
-    {
-        QPixmap img(WayTo+"0.jpg");
-        img=img.scaled(600,600);
-        ui->originalPhoto->setPixmap(img);
-        photoLayout->addWidget(ui->originalPhoto);
-    }
-    layout->addLayout(photoLayout);
-    layout->addWidget(ui->countMoves);
-    layout->update();
+            delete game;
+        }
 
-    game->hide();
-    game->show();
+        game = new Game(WayTo, this); //draw a new field
+        connect(this->game, SIGNAL(Smove()), this, SLOT(update_count_of_moves()));
+        update_count_of_moves();
+        photoLayout->addWidget(game);
+        if (!hardMode)
+        {
+            QPixmap img(WayTo+"0.jpg");
+            img=img.scaled(600,600);
+            ui->originalPhoto->setPixmap(img);
+            photoLayout->addWidget(ui->originalPhoto);
+        }
 
-    resize(sizeHint());
+        layout->addLayout(photoLayout);
+        layout->addWidget(ui->countMoves);
+        layout->update();
+
+        game->hide();
+        game->show();
+
+        resize(sizeHint());
 }
 
 void Form::on_ExitGame_clicked()
