@@ -35,13 +35,15 @@ Example2::Example2(QWidget *parent) :
     customPlot->xAxis2->setTickLabels(false);
     customPlot->yAxis2->setTickLabels(false);
 
-    customPlot->yAxis->setTickLabelColor(QColor(Qt::red)); // Красный цвет подписей тиков по Оси Y
-    customPlot->legend->setVisible(true);   //Включаем Легенду графика
-    // Устанавливаем Легенду в левый верхний угол графика
-    customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignLeft|Qt::AlignTop);
+    // Красный цвет подписей тиков по Оси Y
+    customPlot->yAxis->setTickLabelColor(QColor(Qt::red));
+
+    //Включаем Легенду графика
+    customPlot->legend->setVisible(true);
 
     // Инициализируем график и привязываем его к Осям
     graphic = new QCPGraph(customPlot->xAxis, customPlot->yAxis);
+
     customPlot->addPlottable(graphic);  // Устанавливаем график на полотно
     graphic->setName("Доход, Р");       // Устанавливаем
     graphic->setPen(QPen(QColor(Qt::red))); // Устанавливаем цвет графика
@@ -56,6 +58,7 @@ Example2::Example2(QWidget *parent) :
 
     // Будем строить график с сегодняшнего дни и текущей секунды в будущее
     double now = QDateTime::currentDateTime().toTime_t();
+
     // Объявляем вектора времени и доходов
     QVector <double> time(400), income(400);
 
@@ -69,7 +72,9 @@ Example2::Example2(QWidget *parent) :
       }
 
     graphic->setData(time, income); // Устанавливаем данные
+
     customPlot->rescaleAxes();      // Масштабируем график по данным
+
     customPlot->replot();           // Отрисовываем график
 }
 

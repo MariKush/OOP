@@ -7,71 +7,69 @@ Example1::Example1(QWidget *parent) :
     ui(new Ui::Example1)
 {
     ui->setupUi(this);
-    //  this->setGeometry(300,100,640,480);
+    //this->setGeometry(300,100,640,480);
 
-      // Инициализируем объект полотна для графика ...
-      wGraphic = new QCustomPlot();
-      ui->gridLayout->addWidget(wGraphic,1,0,1,1); // ... и устанавливаем
+    // Инициализируем объект полотна для графика ...
+    wGraphic = new QCustomPlot();
+    ui->gridLayout->addWidget(wGraphic,1,0); // ... и устанавливаем
 
-      // Инициализируем вертикальную линию
-      verticalLine = new QCPCurve(wGraphic->xAxis, wGraphic->yAxis);
+    // Инициализируем вертикальную линию
+    verticalLine = new QCPCurve(wGraphic->xAxis, wGraphic->yAxis);
 
-      // Подключаем сигналы событий мыши от полотна графика к слотам для их обработки
-      connect(wGraphic, &QCustomPlot::mousePress, this, &Example1::slotMousePress);
-      connect(wGraphic, &QCustomPlot::mouseMove, this, &Example1::slotMouseMove);
+    // Подключаем сигналы событий мыши от полотна графика к слотам для их обработки
+    connect(wGraphic, &QCustomPlot::mousePress, this, &Example1::slotMousePress);
+    connect(wGraphic, &QCustomPlot::mouseMove, this, &Example1::slotMouseMove);
 
-      // создаём вектора для вертикальной линии
-      QVector<double> x(2) , y(2);
-          x[0] = 0;
-          y[0] = -50;
-          x[1] = 0;
-          y[1] = 50;
+    // создаём вектора для вертикальной линии
+    QVector<double> x(2) , y(2);
+        x[0] = 0;
+        y[0] = -50;
+        x[1] = 0;
+        y[1] = 50;
 
 
-      wGraphic->addGraph(wGraphic->xAxis, wGraphic->yAxis);
-              //addPlottable(verticalLine);   // Добавляем линию на полотно
-      //customPlot->graph()->data()->set(timeData);
-      //wGraphic->graph()->addPlottable(verticalLine);
-      verticalLine->setName("Vertical");      // Устанавливаем ей наименование
-      verticalLine->setData(x, y);            // И устанавливаем координаты
+    wGraphic->addPlottable(verticalLine);   // Добавляем линию на полотно
+    verticalLine->setName("Vertical");      // Устанавливаем ей наименование
+    verticalLine->setData(x, y);            // И устанавливаем координаты
 
-      // создаём вектора для графика
-      QVector<double> x1(5) , y1(5);
-          x1[0] = -45;
-          y1[0] = -43;
-          x1[1] = 46;
-          y1[1] = 42;
-          x1[2] = -25;
-          y1[2] = -24;
-          x1[3] = -12;
-          y1[3] = 10;
-          x1[4] = 25;
-          y1[4] = 26;
+   //// создаём вектора для графика
+   QVector<double> x1(5) , y1(5);
 
-      // Добавляем график на полотно
-      wGraphic->addGraph(wGraphic->xAxis, wGraphic->yAxis);
-      wGraphic->graph(0)->setData(x1,y1);     // Устанавливаем координаты точек графика
+        x1[0] = -45;
+        y1[0] = -43;
+        x1[1] = 46;
+        y1[1] = 42;
+        x1[2] = -25;
+        y1[2] = -24;
+        x1[3] = -12;
+        y1[3] = 10;
+        x1[4] = 25;
+        y1[4] = 26;
 
-      // Инициализируем трассировщик
-      tracer = new QCPItemTracer(wGraphic);
-      tracer->setGraph(wGraphic->graph(0));   // Трассировщик будет работать с графиком
 
-      // Подписываем оси координат
-      wGraphic->xAxis->setLabel("x");
-      wGraphic->yAxis->setLabel("y");
+    // Добавляем график на полотно
+    wGraphic->addGraph(wGraphic->xAxis, wGraphic->yAxis);
+    wGraphic->graph(0)->setData(x1,y1);     // Устанавливаем координаты точек графика
 
-      // Устанавливаем максимальные и минимальные значения координат
-      wGraphic->xAxis->setRange(-50,50);
-      wGraphic->yAxis->setRange(-50,50);
+    // Инициализируем трассировщик
+    tracer = new QCPItemTracer(wGraphic);
+    tracer->setGraph(wGraphic->graph(0));   // Трассировщик будет работать с графиком
 
-      // Отрисовываем содержимое полотна
-      wGraphic->replot();
+    // Подписываем оси координат
+    wGraphic->xAxis->setLabel("x");
+    wGraphic->yAxis->setLabel("y");
+
+    // Устанавливаем максимальные и минимальные значения координат
+    wGraphic->xAxis->setRange(-50,50);
+    wGraphic->yAxis->setRange(-50,50);
+
+    // Отрисовываем содержимое полотна
+    wGraphic->replot();
 }
 
 Example1::~Example1()
 {
     delete ui;
-
 }
 
 void Example1::slotMousePress(QMouseEvent *event)

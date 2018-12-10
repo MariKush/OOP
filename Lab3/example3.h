@@ -19,12 +19,12 @@ public:
 private:
     Ui::Example3 *ui;
     QCustomPlot *customPlot;
-    QVBoxLayout *vbox;
+    QVBoxLayout *vbox;//выстраивает виджеты вертикально
     QPushButton *res;
-    QCPBars *fossil;
+    QCPBars *histogram;//График, представляющий гистограмму на графике.
 
 private slots:
-    void rndres();
+    void update();
 };
 
 #endif // EXAMPLE3_H

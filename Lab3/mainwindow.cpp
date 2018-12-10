@@ -4,6 +4,9 @@
 #include "example1.h"
 #include "example2.h"
 #include "example3.h"
+#include "manuallyset.h"
+#include "QMessageBox"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,4 +38,26 @@ void MainWindow::on_pushButton3_clicked()
     Example3 *f = new Example3();
     f->show();
 
+}
+
+
+void MainWindow::on_pushButtonManually_clicked()
+{
+    ManuallySet *f = new ManuallySet();
+    f->show();
+}
+
+void MainWindow::on_pushButtonInfo_clicked()
+{
+    QMessageBox::information(this, "Information",
+                                  "Examples:\n"
+                                  "\t - 1 -  \n"
+                                  "a) Draw the one graph on several points;\n"
+                                  "b) Have a vertically movable line;\n"
+                                  "c) For a vertical line will follow the router, which will be up to the next point on the graph of the vertical line.\n"
+                                  "\t - 2 -  \n"
+                                  "The build of charts with time. \n"
+                                  "\t - 3 -  \n"
+                                  "The program displays a histogram, the column values of which are set randomly. \n"
+                              );
 }

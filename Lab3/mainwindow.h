@@ -23,6 +23,10 @@ private slots:
 
     void on_pushButton3_clicked();
 
+    void on_pushButtonManually_clicked();
+
+    void on_pushButtonInfo_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

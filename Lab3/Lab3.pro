@@ -30,20 +30,23 @@ SOURCES += \
     example1.cpp \
     example2.cpp \
     qcustomplot.cpp \
-    example3.cpp
+    example3.cpp \
+    manuallyset.cpp
 
 HEADERS += \
         mainwindow.h \
     example1.h \
     example2.h \
     qcustomplot.h \
-    example3.h
+    example3.h \
+    manuallyset.h
 
 FORMS += \
         mainwindow.ui \
     example1.ui \
     example2.ui \
-    example3.ui
+    example3.ui \
+    manuallyset.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
